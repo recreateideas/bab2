@@ -9,7 +9,7 @@ registerServiceWorker.js
 
 # production
 /babel_compiled
-/public/images
+/public
 
 # misc
 Icon?
