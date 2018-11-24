@@ -1,21 +1,15 @@
 # See https://help.github.com/ignore-files/ for more about ignoring files.
 
 # dependencies
-node_modules
-./node_modules
 /node_modules
-
-# testing
-/coverage
-Projs
-css2
-css3
 
 package-lock.json
 to-do.rtf
+registerServiceWorker.js
 
 # production
-/build
+/babel_compiled
+/public/images
 
 # misc
 Icon?
@@ -29,7 +23,6 @@ to-do
 .vscode
 /release-builds
 /assets
-/babel_compiled
 /static
 /uploads
 /static
@@ -37,7 +30,6 @@ to-do
 /dist
 /backups
 /users
-/public
 /installers
 
 npm-debug.log*
