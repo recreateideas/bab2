@@ -11,3 +11,4 @@ export { default as Interrogator } from './Interrogator';
 export { default as MessageBox } from './MessageBox';
 export { default as UsersBox } from './UsersBox';
 export { default as TypeBox } from './TypeBox';
+export { default as ConnectionShortcutWrap } from './ConnectionShortcutWrap';

@@ -49,6 +49,7 @@ const initialState = {
         registerEmail:'',
         passWord:'',
         confirmPassWord:'',
+        connectionShortCuts:[],
     },
     mongo:{
         DBcollections: [],

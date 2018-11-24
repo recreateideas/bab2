@@ -12,3 +12,4 @@ export { default as Tooltip } from './Tooltip';
 export { default as UserContainer } from './UserContainer';
 export { default as TextBox } from './TextBox';
 export { default as Loader } from './Loader';
+export { default as ConnectionShortcut } from './ConnectionShortcut';

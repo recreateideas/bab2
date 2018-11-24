@@ -71,6 +71,7 @@
 
   #connectorContainer {
       position: relative;
+      height: fit-content;
   }
 
   .connectToggleContainer {
@@ -124,7 +125,11 @@
       cursor: default;
   }
 
-  #tabs #toggle-tab1:checked~#tab1,
+  #tabs #toggle-tab1:checked~#tab1{
+    display: flex;
+    flex-direction: row;
+  }
+
   #toggle-tab2:checked~#queryTab,
   #toggle-shareTab:checked~#shareTab,
   #toggle-tab3:checked~#tab3,

@@ -19,3 +19,39 @@
 @import 'components/Chat.scss';
 @import 'components/Loaders.scss';
 // app css
+#connectionShortcutWrap {
+    height: fit-content;
+    position: relative;
+    top: 42px;
+    margin-left: 2px;
+    cursor: pointer;
+    .connectionShortcut {
+        &:hover,
+        &:active {
+            background: #e0e0e0;
+        }
+        margin-top: 3px;
+        background: #cacaca;
+        border-top-right-radius: 3px;
+        border-bottom-right-radius: 3px;
+        padding-left: 5px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        padding-right: 10px;
+        display: flex;
+        flex-direction: row;
+        .shortcutIcon {
+            padding: 5px;
+            color: green;
+        }
+        .shortcutLabel {
+            position: relative;
+            top: 1px;
+            color: #464646;
+            max-width: 155px !important;
+            overflow-x: hidden;
+            font-size: 15px;
+            white-space: nowrap;
+        }
+    }
+}
