@@ -1,0 +1,116 @@
+h1 {
+  color: white;
+}
+
+h4 {
+  font-size: 24px;
+  font-weight: 100;
+  color: #d6d6df;
+  font-style: italic;
+}
+
+h5 {
+  font-family: "Courier New",
+  Courier,
+  "Lucida Sans Typewriter",
+  "Lucida Typewriter",
+  monospace;
+  font-size: 16.5px;
+  font-weight:800;
+  color: #003c44;
+  letter-spacing: 1px;
+  margin: 0px !important;
+}
+
+h6 {
+  font-family: "Courier New",
+  Courier,
+  "Lucida Sans Typewriter",
+  "Lucida Typewriter",
+  monospace;
+  font-size: 16.5px;
+  font-weight:600;
+  color: white;
+  letter-spacing: 1px;
+  margin: 0px !important;
+}
+
+.success {
+  color: #00cc00;
+}
+
+.error {
+  color: #FF0000;
+}
+
+.warning {
+  color: #FFA500;
+}
+
+.h7 {
+  font-size: 16px;
+  font-weight:400;
+  color: white;
+}
+
+
+.h8 {
+  font-size: 18px;
+  font-weight: 100;
+  color: #d6d6df;
+  font-style: italic;
+}
+p.h9 {
+  font-size: 14px;
+  font-weight: 100;
+  color: #d6d6df;
+  font-style: italic;
+  line-height: 1.4em;
+}
+
+p {
+  font-size: 14px;
+  font-weight: 100;
+  color: #f6f6f6;
+  font-style: italic;
+  line-height: 0.5em;
+}
+
+strong {
+  line-height: inherit;
+  font-style: normal;
+}
+
+.browntext {
+  color: rgb(131, 92, 59);
+}
+
+label {
+  font-size: 16px;
+}
+
+.validField {
+  border: solid 1px #00cc00 !important;
+  background-color: #c3e8d3 !important;
+  &:active{
+      background-color: #c3e8d3 !important;
+  }
+  &:focus{
+      background-color: #d1f0de !important;
+  }
+}
+
+.not_validField {
+  border: solid 1px red !important;
+  background-color: #e2c3c3 !important;
+  &:active{
+      background-color: #e2c3c3 !important;
+  }
+  &:focus{
+      background-color: #e7d8d8 !important;
+  }
+}
+
+.noBorder {
+  border: 0px;
+}

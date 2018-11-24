@@ -1,0 +1,48 @@
+:root {
+    --json-font-size: 14px;
+}
+
+#minifiedContainer {
+    margin-top: 30px;
+    margin-left: 50px;
+    margin-right: 50px;
+    p {
+        font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+        color: #ccd;
+        line-height: 1.5em;
+        line-break: auto;
+        word-wrap: break-word;
+        font-weight: 600;
+        font-style: normal
+    }
+}
+
+#mongo_results {
+    position: relative;
+    left: 7%;
+    background-color: rgba(0, 0, 0, 0) !important;
+}
+
+.json-pretty {
+    color: #b7b8b6;
+    font-weight: 600;
+    font-size: var(--json-font-size);
+    border: solid 0px rgba(0, 0, 0, 0) !important;
+    outline-color: rgba(0, 0, 0, 0);
+}
+
+.json-key {
+    color: #66a5ad;
+    font-weight: inherit;
+}
+
+.json-value {
+    color: #a482f1;
+    /* #7da3a1;*/
+    font-weight: inherit;
+}
+
+.json-string {
+    color: #6fb98f;
+    font-weight: inherit;
+}

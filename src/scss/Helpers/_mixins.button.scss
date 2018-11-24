@@ -1,0 +1,16 @@
+/*Button Mixins*/
+
+@mixin generate-button($name, $background, $color:''){
+    .button-#{$name}{
+        background: $background;
+        @if ($color==''){
+            color: set-text-color($background);
+        } @else {
+            color: $color;
+        }
+
+        &:hover {
+            background: lighten($background, 10%);
+        }
+    }
+}

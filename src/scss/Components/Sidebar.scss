@@ -1,0 +1,353 @@
+/* @import url(https://fonts.googleapis.com/csshFileWrapperss?family=Poiret+One|Varela+Round); */
+
+// @import 'helpers/parameters';
+
+.mainContainer {
+    width: 65% !important;
+    margin-left: 0px;
+    min-width: 880px;
+}
+
+$tablet-min-breakpoint: 768px;
+.toggle {
+    text-decoration: none;
+    font-size: 2em;
+    color: white;
+    position: fixed;
+    left: 20px;
+    z-index: 1;
+    cursor: pointer;
+    height: 0px !important;
+}
+
+#slide:checked+.container{
+    .toggle {
+        left: 97.5%;
+        position: relative;
+    }
+    .sidebar {
+        left: 0px;
+        #tabs{
+            margin-top: -23px !important; //play around with this
+        }
+    }
+}
+
+#slide {
+    display: none;
+}
+
+.sidebar {
+    position: fixed;
+    top: 0px;
+    bottom: 0px;
+    left: -4250px;
+    -webkit-transition: 0.5s;
+    -moz-transition:0.5s;
+    transition: 0.5s;
+    width: auto;
+    padding: 1.5em;
+    /* background: rgba(0,0,0,0.1);
+border-right: solid 1px rgb(0,0,0); */
+overflow-y: hidden;
+height: auto;
+}
+
+#connectorContainer .h7 {
+    font-size: 16px;
+    padding-top: 2%;
+    color: #d6d6df;
+}
+
+.sshWrapper {
+    display: flex;
+}
+
+#sshCol {
+    min-width: fit-content;
+    display: inline-flex;
+    max-height: 28px;
+    .buttonIcon {
+        margin-right: 6px;
+        padding-left: 5px;
+        padding-top: 2px;
+        width: 28px !important;
+        min-width: 28px !important;
+        height: 28px;
+    }
+    .sshFilePath {
+        span {
+            position: absolute;
+            margin-left: 3.5px;
+            margin-top: 3px;
+        }
+    }
+    .sshDetails {
+        position: relative;
+        margin-left: 5px;
+        .h9 {
+            margin-left: 3px;
+            margin-bottom: 5px !important;
+            margin-top: 2px !important;
+        }
+    }
+}
+
+#sshPath {
+    position: relative;
+}
+
+#connectorContainer .h7 span {
+    font-style: italic;
+}
+
+#sshFileWrapper {
+    position: relative;
+    top: 0px;
+    margin-left: 0px !important;
+    margin-bottom: 0px !important;
+    max-height: 28px !important;
+    .uploaded {
+        margin-bottom: 0px !important;
+        margin-top: 2px;
+    }
+}
+
+.deleteSshFileWrapper {
+    position: relative;
+    left: -6px;
+    top: -8px;
+    .deleteSSHIcon {
+        color: #ff4c4c;
+        cursor: pointer;
+    }
+}
+
+.noFileUploaded .h7 {
+    color: #ff4c4c !important;
+    font-size: 14px !important;
+    margin-top: 7px;
+    margin-left: 5px;
+}
+
+.removeEvents {
+    z-index: 100;
+    pointer-events: none;
+}
+
+@media (max-width: 768px) {
+    #slide:checked+.container .toggle {
+        left: 94% !important;
+        position: relative;
+    }
+    .sidebar {
+        position: fixed;
+        margin-right: 10%;
+        margin-top: -10px;
+        /* width:95%; */
+        width: 98vw;
+        overflow-x: hidden;
+        overflow-y: scroll;
+    }
+    #slide:checked+.container .toggle {
+        left: 50%;
+        position: relative;
+    }
+    .tab {
+        position: absolute !important;
+        /* width: 94%; */
+    }
+    .connectorRow {
+        padding-bottom: 2.5%;
+    }
+    .featureContainer {
+        max-width: 100% !important;
+        width: 100% !important;
+        padding-left: 10px;
+    }
+    #connectorContainer .h7 span {
+        display: block;
+        padding-top:4%;
+        padding-bottom:3%;
+    }
+    #connectorContainer .h7 {
+        display: block;
+        padding-top: 1.5%;
+        padding-bottom: 2%;
+        font-size: 15px;
+        margin-bottom: 2%;
+        padding-top: 1%;
+    }
+    .toggleLabel {
+        padding-top: 5px !important;
+    }
+}
+
+@media (max-width: 668px) {
+    #slide:checked+.container .toggle {
+        left: 92% !important;
+        position: relative;
+    }
+}
+
+@media (max-width: 576px) {
+    /* #slide:checked + .container .toggle {
+        left: 90% !important;
+    } */
+    .connectorRow {
+        padding-bottom: 2.5%;
+    }
+    #connectorContainer .h7 {
+        padding-top: 1%;
+        padding-bottom: 2%;
+    }
+}
+
+@media (max-width: 320px) {
+    .tab {
+        width: 92%;
+    }
+}
+
+
+#toggleContainer {
+    width: 100%;
+}
+
+.toggleLabel {
+    top: 3px !important;
+    position: relative;
+}
+
+.featureContainer {
+    background-color: #3B3E45 !important;
+    border: solid 1px #909090;
+    border-radius: 5px;
+    padding: 2px;
+    /* position: relative; */
+    top: 40px;
+    max-width: 80%;
+    width: 80%;
+    display: -webkit-inline-box;
+    display: -moz-inline-box;
+    display: -ms-inline-flexbox;
+    display: block;
+    padding-left: 10px;
+}
+
+#connectorTable {
+    display: block;
+}
+
+#connectorForm {
+    position: relative;
+    top: -30px;
+}
+
+.connectorRow {
+    padding-bottom: 1.5%;
+}
+
+.connectorTitle {
+    position: relative;
+    top: -36px;
+    left: -7px;
+    display: inline-block;
+}
+
+.buttonContainer {
+    padding-right: 5px;
+}
+
+.buttonContainer label {
+    display: inline;
+}
+
+.buttonIcon {
+    border: solid 1px #909090;
+    border-radius: 10px;
+    padding: 5px;
+    background-color: rgba(255, 255, 255, .1);
+    cursor: pointer;
+    position: relative;
+    min-width: 30px;
+}
+
+.buttonIcon:hover {
+    background-color: rgba(255, 255, 255, .2) !important;
+    color: rgba(255, 255, 255, .2) !important;
+}
+
+.buttonIcon:active {
+    background-color: rgba(0, 0, 0, .1);
+}
+
+.toolListItem {
+    margin: 10px 0;
+}
+
+.toolIcon {
+    font-size: 250% !important;
+    max-width: 35px;
+}
+
+.uploaded {
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.fileDetails {
+    position: relative;
+    top: -30px;
+}
+
+/* .uploadedFilesContainerIndicatorWrapper{
+    position: relative;
+    display:block !important;
+    padding-left: 95%;
+    top: 10px;
+}
+
+.QueryfileIcon{
+    color: green;
+    text-shadow: none;
+    position: relative;
+    display: block;
+    opacity: 1.0 !important;
+    top: -100px;
+    left: 100%;
+} */
+
+.uploadedFilesContainer {
+    border-style: dashed;
+    border-width: 2px;
+    border-radius: 5px;
+    border-color: #909090;
+    background-color: rgba(255, 255, 255, .07);
+    padding: 0px;
+    margin-left: 5%;
+    margin-bottom: 10px;
+    top: 10px;
+    position: relative;
+    width: fit-content;
+    max-height: 95px;
+}
+
+.toolIndicatorStatus {
+    display: none;
+}
+
+/* .outerWrapper{
+    width: 99%;
+}*/
+
+#fileList {
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-right: 10px;
+    padding-top: -10px !important;
+}
+
+.appContent {
+    margin-top: 20px;
+}

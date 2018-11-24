@@ -1,0 +1,28 @@
+.hidden {
+  display: none;
+  visibility: hidden;
+}
+.noVisibility {
+    visibility: hidden;
+}
+.show {
+  display: inline-block;
+}
+
+.block {
+  display: block;
+}
+
+.flexBox {
+  display: flex;
+}
+.inline{
+  display: inline-block;
+}
+
+.display_none {
+  display: none !important;
+}
+.max-content{
+  width: max-content;
+}

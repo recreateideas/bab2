@@ -1,0 +1,38 @@
+{
+    "presets": [
+        "env",
+        "es2015",
+        "react"
+    ],
+    "plugins": [
+        "transform-object-rest-spread",
+        "css-modules-transform",
+        [
+            "inline-json",
+            {
+                "matchPattern": "config"
+            }
+        ],
+        [
+            "module-resolver",
+            {
+                "root": [
+                    "./babel_compiled"
+                ]
+            }
+        ],
+        "inline-import-data-uri",
+         [
+            "import-static-files",
+            {
+                "extensions": [
+                    ".jpg",
+                    ".png",
+                    ".json"
+                ],
+                "baseDir":"/users/claudio/baboon/"
+            }
+        ]
+
+    ]
+}

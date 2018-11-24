@@ -1,0 +1,373 @@
+
+
+.cursorWrapper {
+  margin-top: 4% !important;
+}
+
+.cursorWrapper .querycheck{
+  position: absolute !important;
+}
+
+.cursorWrapper .h7 {
+    display: table-cell;
+}
+
+.cursorWrapper .checkmark{
+  padding-right:10px;
+}
+
+.cursorSelect{
+  position: relative;
+  bottom:10px;
+  margin:0px 3px;
+}
+.cursorWrapper .inputSelect{
+  padding-bottom: 10px;
+}
+
+.cursorGridWrapper{
+  margin-top:15px;
+      min-width: 300px;
+}
+
+.cursorText {
+    position: relative;
+    /* padding-top: 12%; */
+    margin-bottom: 10px;
+    margin-left: 10px;
+        height: 25px;
+        max-height: 25px;
+        min-height: 25px;
+}
+
+.flexContainer{
+    display: inline-flex;
+    flex-direction: row;
+    justify-content:flex-start;
+}
+
+.flexItem{
+margin-right: 20px;
+}
+
+.cursorText .h7 {
+  font-size: 18px;
+  font-weight: 600;
+  color: white;
+}
+
+.cursorTitle{
+ left: 0px !important;
+}
+
+.contentTable{
+  background-color: rgba(0,0,0,0);
+  position: relative;
+}
+.queryCollectionTable{
+    margin-top: 5px;
+    padding-right: 15px;
+    margin-bottom: 5px;
+}
+.keysTable,
+.keysTable td {
+  font-size: 20px;
+  text-align: center;
+  border: solid 0px;
+  padding-bottom: 3px;
+  padding-left: 7px;
+  /* max-height: 113px !important; */
+}
+
+.keysTable {
+  width: unset !important;
+  padding-top: 0px;
+  display: inline-table;
+}
+
+.keysTable td {
+  padding-top: 6px;
+}
+
+.keysTable td>* {
+  vertical-align: middle;
+}
+
+/****************** INPUTS *********************/
+
+.inputText,.inputSelect {
+  background-color: #c6e4e8;
+  size: 100%;
+  /* line-height: 1.5; */
+  height: 25.5px;
+  width: auto;
+}
+.inputText:focus,
+.inputText:active
+  {
+   background-color: #f1fcf9;
+}
+
+
+.inActive {
+  background-color: #396f8e !important;
+  text-decoration: line-through;
+  pointer-events: none;
+}
+
+.inActiveDB {
+  background-color: #396f8e !important;
+  font-weight: 400;
+  color: black;
+  pointer-events: none;
+}
+
+/* .inputSelect.inActive{
+   outline: 2px solid #396f8e !important;
+} */
+
+.inputText::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #333333;
+  opacity: 0.7;
+  font-style: italic;
+  font-weight: 200;
+  /* Firefox */
+}
+
+.inputText{
+  width: 260px;
+  font-size: 15px;
+  padding-left: 3px;
+  border: 0px;
+  border-radius: 10px;
+}
+
+@media (max-width: 320px) {
+  .inputText{
+    width: 96%;
+  }
+}
+
+.inputSelect {
+  /* max-width: 60px ; */
+  height: 25px;
+  line-height: 2;
+  font-size: 16px;
+  border: 0;
+  outline-offset: -2px;
+  /* outline: 2px solid #c6e4e8 !important; */
+  text-align-last:center;
+  cursor: pointer;
+  padding: 0px 6px;
+  color: #333;
+  border-radius: 10px;
+}
+
+.largeSelect{
+  width: 200px;
+  max-width: 150px;
+}
+
+.collectionSelect{
+  width: auto;
+  max-width: 300px;
+}
+
+.fieldTitle{
+  text-align: left;
+  float: left;
+}
+textarea,
+input,
+button, .inputSelect {
+  outline-color: transparent;
+  outline-width: 0px;
+}
+/****************** BUTTONS *********************/
+.addRemoveLineBtn {
+  background-color: white;
+  color: #396f8e;
+  font-weight: 600;
+  font-size: 16px;
+  width: 25px;
+  height: 25px;
+  margin-left: 5px;
+  cursor: pointer;
+  vertical-align: middle;
+  border: 2px solid #E8662D;
+  -webkit-box-shadow: 2px 2px 7px rgba(11, 11, 11, 0.4);
+  box-shadow: 2px 2px 7px rgba(11, 11, 11, 0.4);
+  border-radius: 100%;
+  padding:0px;
+}
+
+.addRemoveLineBtn:active {
+  background-color: #f5dbc2;
+}
+
+@media (max-width: 668px) {
+  .addRemoveLineBtn {
+      width: 20px;
+      height: 20px;
+      font-size: 14px;
+      margin-left: 3px;
+      padding: 0px;
+     margin-top:3px;
+  }
+}
+
+.addRemoveStageBtn {
+  background-color: white;
+  color: #396f8e;
+  font-weight: 400;
+  font-size: 24px;
+  width: 34px;
+  height: 34px;
+  margin-left: 5px;
+  cursor: pointer;
+  vertical-align: middle;
+  border: 2px solid #E8662D;
+  box-shadow: 2px 2px 7px rgba(11, 11, 11, 0.4);
+    border-radius:6px;
+     padding:0px;
+}
+
+.addRemoveStageBtn:active {
+  background-color: #f5dbc2;
+}
+
+.addRemove {
+ text-align: left;
+display: inline-flex;
+}
+
+.comma {
+  width: 10px;
+  vertical-align: bottom;
+  color: white;
+}
+.comma>b {
+  padding: 0px;
+  border:0px;
+}
+
+/****************** CHECKBOX *********************/
+
+
+.querycheck,.stagecheck {
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+}
+
+.stagecheck {
+    display: inline-table;
+    margin-left: 10px;
+    top: -15px;
+    position: absolute;
+  
+}
+
+.querycheck{
+  display: block;
+  margin-top: 6px;
+}
+/* Hide the browser's default checkbox */
+.stagecheck input,.querycheck input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+/* Create a custom checkbox */
+
+ .large_checkmark {
+  height: 21px !important;
+  width: 21px !important;
+  border-radius: 5px !important;
+} 
+
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 13px;
+  width: 13px;
+  background-color: #eee;
+  border: solid 1px;
+  border-color:#c8f2e6;
+  border-radius: 3px;
+}
+/* On mouse-over, add a grey background color */
+.stagecheck:hover input~.checkmark, .querycheck:hover input~.checkmark {
+  background-color: #ccc;
+}
+/* When the checkbox is checked, add a blue background */
+.stagecheck input:checked~.checkmark,.querycheck input:checked~.checkmark {
+  /* background-color: rgb(131, 92, 59); */
+  background-color: #E8662D; /*29ab87*/
+}
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+/* Show the checkmark when checked */
+.stagecheck input:checked~.checkmark:after,.querycheck input:checked~.checkmark:after {
+  display: block;
+}
+/* Style the checkmark/indicator */
+.querycheck .checkmark:after {
+  left: 5.5px;
+  bottom: 4px;
+  width:5px;
+  height: 12px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(0deg);
+  -ms-transform: rotate(0deg);
+  transform: rotate(45deg);
+}
+
+.stagecheck .checkmark:after {
+  left: 8.5px;
+  bottom: 6.5px;
+  width: 9px;
+  height: 19px;
+  border: solid white;
+  border-width: 0 4px 4px 0;
+  -webkit-transform: rotate(0deg);
+  -ms-transform: rotate(0deg);
+  transform: rotate(45deg);
+}
+
+
+#queryComponent {
+  position: relative;
+  width: fit-content;
+  top: -50px;
+}
+
+#querySetupTable{
+  margin-top: 70px;
+  margin-left: unset !important;
+  width: fit-content;
+}
+
+#interrogator{
+  position: relative;
+}
+
+#error {
+    position: absolute;
+    bottom: 80px;
+    left: 0px;
+    white-space: nowrap;
+}

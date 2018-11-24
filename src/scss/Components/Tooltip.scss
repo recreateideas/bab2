@@ -1,0 +1,15 @@
+.__react_component_tooltip.type-success{
+    background-color: #089e83 !important;
+    &.place-right:after {
+        border-right-color: #089e83 !important;
+    }
+    &.place-left:after {
+        border-left-color: #089e83 !important;
+    }
+    &.place-top:after {
+        border-top-color: #089e83 !important;
+    }
+    &.place-bottom:after {
+        border-bottom-color: #089e83 !important;
+    }
+}

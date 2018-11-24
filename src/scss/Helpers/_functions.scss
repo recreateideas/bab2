@@ -1,0 +1,13 @@
+/*** Functions ***/
+
+
+/*Example*/
+/* Set text color based on background color*/
+
+@function set-text-color($background){
+    @if(lightness($background)>50){
+        @return #000;
+    } @else {
+        @return #fff;
+    }
+}

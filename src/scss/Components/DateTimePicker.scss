@@ -1,0 +1,139 @@
+
+.react-datepicker{
+    background-color: #d7e6ef !important;
+    border-radius:7px;
+    z-index: 101;
+}
+
+.react-datepicker-popper {
+    z-index: 101;
+    min-width: 222.5px  !important;
+    width: 222.5px !important;
+}
+
+.react-datepicker__day--selected, .react-datepicker__time-list-item--selected {
+    background-color: rgb(57, 111, 142) !important;
+    font-weight: 800;
+}
+
+/* .react-datetime-picker button {
+    color: black;
+}*/
+.react-datepicker__triangle {
+    border-top-color:#aeaeae !important;
+}
+
+.react-datepicker__day-name {
+      color: #c000ff !important;
+      font-weight: 800;
+      font-size: 11px;
+}
+
+.react-datepicker__day--today {
+    background: rgba(247, 152, 97, 0.8) !important;
+    border-radius:3px;
+}
+
+.react-datepicker__day{
+    font-size: 10px;
+}
+
+.react-datepicker__input-container {
+    /* background-color: #c6e4e8 !important; */
+    color: #555;
+    /* font-size: 16px;
+    border-radius: 10px; */
+    width:fit-content !important;
+    height:fit-content !important;
+}
+
+.react-datepicker__input-container button{
+    padding-left: 2px;
+    padding-right: 3px;
+    padding-top: 1px;
+    padding-bottom:3px;
+    border-radius: 6px;
+    max-height: 26px;
+    width: 26px;
+}
+
+.react-datepicker__input-container button span{
+    line-height: .75em;
+     vertical-align: -.0667em;
+}
+
+.react-datepicke_gmtzone-select {
+    position: absolute;
+    z-index: inherit;
+    bottom: 0;
+    right: 0;
+    height: 25px;
+    width:70px;
+    font-size: 10.5px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    padding: 5px;
+    outline-color: transparent;
+    outline-width: 0px;
+    border-color: #E8662D;
+    background-color: #fdf4ef;
+    border-radius: 2.5px;
+}
+.react-datepicke_gmtzone-select option {
+    padding-left:1px !important;
+    padding-right: 1px !important;
+}
+
+.react-datepicker__input-container input{
+    background-color: #c6e4e8;
+    border:0px;
+    color: #555;
+}
+ul.react-datepicker__time-list {
+    height: 95px !important;
+}
+
+.react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list {
+    padding: 0px;
+    background-color: #d7e6ef !important;
+    font-size: 10px;
+}
+
+.pickerButton {
+    color: #E8662D;
+    background-color: rgba(82,84,91,0.7);
+    border-color:#bbd5e4;
+}
+
+.spacePicker {
+  padding-left:3px;
+}
+
+#mongoTooltip {
+    position: absolute;
+    top: -51px;
+    left:15px;
+    display: inline;
+    word-wrap: nowrap;
+    background-color: #f4b397;
+    color:black;
+    border-radius: 5px;
+    font-size: 14px;
+    padding:1px 5px;
+    min-height: 40px;
+}
+
+#mongoTooltip::after {
+    border-top: 10px solid #f4b397;
+    border-left: 10px solid transparent; 
+    border-right: 10px solid transparent; 
+    bottom: 0px;
+    content: "";
+    position: absolute;
+    top:40px;
+    left: 25%;
+    margin-left: -21px;
+    width: 0; 
+    height: 0;
+}

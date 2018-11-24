@@ -1,0 +1,367 @@
+.stage {
+    background-color: #3B3E45 !important;
+    border: solid 1px #1d1d24;
+    border-radius: 5px;
+    padding: 2px;
+    /* max-width: 80%; */
+    width: fit-content;
+    min-width: auto;
+    margin-top: 50px;
+}
+
+.formLineRow_col {
+    max-height: 29px;
+    height: 29px;
+    min-height: 29px;
+}
+
+
+.formLineRow_col .row{
+    max-height: 29px;
+    height: 29px;
+    min-height: 29px;
+}
+
+.stageWrapper::before {
+    position: relative;
+    content: " ";
+}
+
+.stageWrapper {
+    position: relative;
+    width: fit-content;
+    max-width: fit-content;
+    // top: 30px;
+}
+
+.stageBadgeWrapper {
+position: absolute;
+    height: 0px !important;
+    max-height: 0px;
+    display: inline-block;
+    width: 100%;
+}
+
+.stageIcon {
+    color: #d6d6df;
+    text-shadow: none;
+    position: relative;
+    top: -30px;
+    right: 0.8%;
+    /* z-index: 99; */
+    float: right;
+}
+
+
+.stageTitle{
+    display: inline-block;
+    position: relative;
+    top: -30px;
+    left: 40px;
+    z-index: 1;
+    margin-left:5px;
+}
+@media (max-width: 668px) {
+    .stageTitle {
+        margin-left: 15px;
+    }
+}
+.pipelineStage {
+ position: absolute;
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+    left: 15%;
+    top: -44px;
+    margin-top: 20px;
+    margin-left: 0px;
+    background-color: rgba(82,84,91,0.7) !important;
+}
+
+// .header {
+//     &.valueCol {
+//         p {
+//             position: fixed;
+//             left: 550px;
+//         }
+//     }
+//     &.typeCol {
+//         p {
+//             position: fixed;
+//             left: 785px;
+//         }
+//     }
+// } 
+
+.pipelineStage p {
+    position: relative;
+    line-height: 1;
+    margin: 0px;
+    top: 5px !important;
+}
+
+@media (max-width: 668px) {
+    .pipelineStage {
+        left: 22%;
+    }
+}
+
+.titleContainer {
+    padding-left: 0px;
+    max-width: fit-content;
+}
+.inputContainer {
+    padding-left: 0px ;
+}
+.roundBorder {
+    border-radius: 10px;
+    background-color: rgba(255,255,255,.1);
+  border: solid 1px #797979;
+  padding: 0.7%;
+}
+
+.formLineRow .h7 {
+    font-size: 14px;
+}
+/********* FORM-LINE COlUMNS**********/
+
+
+.FormLineTable{
+  border-spacing: 0px;
+  border-collapse: separate;
+  padding-right: 7px;
+  padding-top: 11px;
+}
+
+.formLineHeader{
+  /* line-height: 1.5em; */
+  padding:10px 0px 5px 0px;
+   /* width: 100%; */
+   position: relative;
+   margin:0px !important;
+}
+
+.formLineRow {
+    padding-right:10px !important;
+    padding-left:5px !important;
+    padding-top: 11px !important;
+    padding-bottom: 8.5px !important;
+    padding: 3px 0px;
+    position: relative;
+    margin:0px !important;
+}
+
+.formLineRow .inputText{
+    /* width: 240px; */
+    min-width: auto;
+    max-width: auto;
+}
+
+.formLineRow td{
+    border-bottom-width: 3px;
+    padding-left:2px;
+    padding-right:2px;
+}
+.formLineRow td:first-child {
+    padding-left: 10px !important;
+}
+.formLineRow td:last-child {
+    padding-right: 10px !important;
+}
+
+tr.formLineRow:first-child td:first-child {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+tr.formLineRow:first-child td:last-child {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.secondHalf {
+    padding-left:0px;
+}
+
+.formLineRow.oddRow{
+  background-color:#313441;
+}
+
+.formLineRow.evenRow{
+  background-color: #52545B;
+}
+
+.activeCol {
+    width: 30px;
+    padding: 0px 10px;
+}
+
+.keyCol,.valueCol {
+    min-width: 270px;
+    width: fit-content !important;
+}
+
+
+@media (max-width: 400px) {
+    .tab {
+        overflow-x: scroll;
+    }
+}
+
+@media (max-width: 668px) {
+
+    .activeCol {
+        width:20px;
+    }
+
+    /* .formLineHeader .operatorCol{
+        padding-left: -10px;
+    } */
+
+    .formLineRow .inputSelect{
+        max-width: 65px !important;
+        font-size: 12.9px;
+        padding: 0px 6px;
+    }
+
+    .valueCol {
+        padding-right: 0px;
+        padding-left: 0px;
+        margin-left: 33px;
+    }
+    .vTypeSynLeftCol {
+        padding-right: 3px !important;
+        padding-left: 10px !important;
+    }
+    .keyCol,.valueCol {
+        width: 100px !important;
+    }
+   
+    .keyCol .inputText, .valueCol .inputText {
+        width: 130px !important;
+        margin-top:2px;
+    }
+    .typeCol {
+        padding-left: 0px;
+        padding-right:0px;
+    }
+    .addLineCol {
+        max-width:30px;
+         /* padding-left: 0px; */
+
+    }
+}
+
+@media (max-width: 768px) {
+    .FormLineTable {
+        padding-left:20px;
+        position: relative;
+    }
+    .formLineHeader .h7 {
+        font-size: 14px;
+    }
+    .formLineRow .inputText{
+        width: 100%;
+        max-width: 210px;
+        font-size: 14px;
+    }
+    .formLineRow .inputText::placeholder {
+        /* Chrome, Firefox, Opera, Safari 10.1+ */
+        font-size: 12.9px;
+        /* Firefox */
+    }
+    .formLineRow .inputSelect{
+        max-width: 75px;
+        font-size: 12.9px;
+        padding: 0px 6px;
+    }
+
+    .valueCol {
+        padding-right: 0px;
+        padding-left: 0px;
+    }
+    .vTypeSynLeftCol {
+        padding-right: 3px !important;;
+            padding-left: 35px ;
+    }
+    .keyCol,.valueCol {
+         width: fit-content !important;
+        max-width: 200px !important;
+        max-width: 150px;
+        min-width: 150px;
+        width: fit-content !important;
+    }
+
+    .keyCol .inputText, .valueCol .inputText {
+        width: 100%;
+        margin-top:2px;
+    }
+    .typeCol {
+        padding-left: 0px;
+        padding-right:0px;
+    }
+    .addLineCol {
+        max-width:30px;
+         /* padding-left: 0px; */
+
+    }
+}
+@media (max-width: 668px) {
+    .FormLineTable {
+        padding-left:2px;
+        position: relative;
+    }
+}
+
+.operatorCol {
+    width: auto;
+    padding-left:1px;
+    padding-right:1px;
+}
+
+.vTypeSynLeftCol {
+    /* max-width: 70px; */
+    padding-top: 7px;
+    /* padding-left: 25px; */
+    padding-right: 0px;
+    /* padding-right: 5px !important; */
+    width: fit-content !important;
+}
+
+.valueCol{
+    padding:0px;
+    padding-left: 1px !important;
+}
+
+.vTypeSynRightCol {
+    max-width: 20px;
+    padding-top: 7px;
+    padding-left:1px !important;
+}
+
+.addLineCol {
+    width:fit-content;
+    max-width: 100px;
+}
+
+.typeCol {
+    max-width: 130px;
+}
+
+// @media (max-width: 1400px) {
+.formLineRow .inputText{
+    width: 100%;
+  }
+// }
+
+
+.webkit-box {
+    display: -webkit-box;
+}
+
+.selectcollectionWrapper {
+    max-width: fit-content;
+}
+
+.cursorIcon {
+    z-index: 99;
+}

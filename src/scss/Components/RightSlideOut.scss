@@ -1,0 +1,225 @@
+$rightSlideOut_toggle_width: 50px;
+$rightSlideOut_inner_width: 80px;
+$transition-rules: right 0.2s ease-in-out;
+#loginiFrame.loggedInFrame {
+    $iFrameWidth_LoggedIn: 350px;
+    width: $iFrameWidth_LoggedIn !important;
+    margin-left: calc(-1 * #{$iFrameWidth_LoggedIn} / 2) !important;
+}
+
+#loggedInGrid {
+    text-align: center;
+    position: relative;
+    width: auto;
+    .greenText {
+        color: green;
+    }
+    ul {
+        padding-left: 0px !important;
+    }
+    .loginBottomButtons {
+        margin-top: 10px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+}
+
+#rightSlideOut_toggle {
+    position: absolute;
+    left: -$rightSlideOut_toggle_width;
+    width: $rightSlideOut_toggle_width;
+    background: rgba(131, 84, 236, 0.5);
+    min-height: 70px;
+    max-width: $rightSlideOut_toggle_width;
+    border-top-left-radius: 110px;
+    border-bottom-left-radius: 110px;
+    text-align: center;
+    padding-top: 7px;
+    padding-left: 3px;
+    top: 10px;
+}
+
+#rightSlideOut {
+    &::selection {
+        background: transparent !important;
+    }
+    position: fixed;
+    background: #999;
+    border-bottom-left-radius: 40px;
+    height: 500px;
+    min-height: 500px;
+    top: 0px;
+    width: $rightSlideOut_inner_width;
+    right: -$rightSlideOut_inner_width;
+    // right: -0px;
+    transition: $transition-rules;
+    padding-bottom: 25px; // -o-transition: $transition-rules;
+    // -ms-transition: $transition-rules;
+    // -moz-transition: $transition-rules;
+    // -webkit-transition: $transition-rules;
+}
+
+#rightSlideOut_inner {
+    padding: 10px;
+}
+
+#rightSlideOut:hover {
+    right: 0px !important;
+    #rightSlideOut_toggle {
+        background: #8354EC;
+    }
+}
+
+.loggedInImage {
+    width: 230px;
+}
+
+$fontButtonColor:#8354EC;
+$fontSizeColor: grey;
+
+#rightSlideOut_inner {
+    padding: 7px;
+    text-align: center;
+    .toolContainer {
+        margin-top: 10px;
+        border: solid 1px #777;
+        border-radius: 7px;
+        padding: 5px;
+        background: #bbb;
+    }
+    hr.slideSeparator {
+        border-top: 1px solid #777 !important;
+        margin-bottom: 5px;
+        margin-top: 10px;
+        &:after {
+            content: '\002665';
+            display: inline-block;
+            position: relative;
+            top: -15px;
+            padding: 0 10px;
+            background: grey;
+            color: #8c8b8b;
+            font-size: 18px;
+            width: 50px;
+        }
+    }
+    .slideOutDescriptionContainer {
+        text-align: center;
+        p.slideOutDescription {
+            color: #555;
+            font-style: italic;
+            white-space: nowrap; // margin-bottom: 15px;
+        }
+    }
+    .fontSize {
+        font-size: 16px;
+        text-shadow: 2px 0 $fontSizeColor, 0 2px $fontSizeColor, 0px 0 $fontSizeColor, 0 -0px $fontSizeColor;
+        margin-bottom: 2px !important;
+        top: 2px;
+        position: relative;
+    }
+    ul#quickToolsList {
+        list-style: none;
+        padding-left: 0px;
+        margin-top: 15px;
+        li {
+            margin-top: 10px;
+        }
+    }
+    .inactiveButtonIcon {
+        color: grey;
+        pointer-events: none;
+        cursor: no-drop !important;
+        text-shadow: 0px 0px;
+    }
+}
+
+.imageButton {
+    height: 25px;
+    &.activeImg {
+        cursor: pointer;
+    }
+    &.inactiveImg {
+        cursor: normal;
+    }
+}
+
+.fontButton {
+    border-radius: 100%;
+    width: 30px !important;
+    min-width: 30px !important;
+    height: 30px !important;
+    cursor: pointer;
+    margin-left: 12px;
+    margin-bottom: 5px;
+    font-size: 26px;
+    font-weight: 900;
+    color: #333;
+    text-shadow: -1px 0 $fontButtonColor, 0 1px $fontButtonColor, 1px 0 $fontButtonColor, 0 -1px $fontButtonColor;
+}
+
+.iconButton {
+    cursor: pointer;
+    text-shadow: -1px 0 #8354EC, 0 1px #8354EC, 1px 0 #8354EC, 0 -1px #8354EC;
+}
+
+.borderlessButton {
+    cursor: pointer;
+    border: solid 3px #333;
+    border-radius: 100%;
+    padding-right: 3.5px;
+    padding-top: 8px;
+    width: 67px;
+    height: 67px;
+    .iconButton {
+        width: 50px;
+        text-shadow: grey 2px 2px;
+        &:active,
+        &:focus {
+            text-shadow: #555 2px 2px;
+            color: #777;
+        }
+        // &:hover {
+        //     background-color: rgba(0, 0, 0, .1);
+        // }
+    }
+    &:hover {
+        background-color: rgba(0, 0, 0, .1);
+    }
+    &.loggedInBorder {
+        padding-left: 1px;
+        background-color: rgba(3, 242, 63, 0.15);
+        .iconButton {
+            color: rgb(1, 90, 1);
+            text-shadow: #7b8877 2px 2px;
+            top: -2px;
+            position: relative;
+            &:active,
+            &:focus {
+                text-shadow: #555 2px 2px;
+                color: rgb(70, 104, 70);
+            }
+        }
+    }
+}
+
+ul#userPanel {
+    list-style: none;
+    padding-left: 0px;
+    top: -2px;
+    position: relative;
+    #nicknameWrapper {
+        margin-top: 11px;
+        p {
+            color: #396f8e;
+            word-break: break-all;
+            line-height: 0.7em;
+            font-weight: 900 !important;
+        }
+    }
+}
+
+    #saveResults {
+        margin-left: 6px;
+    }

@@ -1,0 +1,217 @@
+{
+    "queries": {
+        "find": {
+            "name": "find",
+            "extendable": false,
+            "openQuery": ".find(",
+            "stages": {
+                "stage_1": {
+                    "label": "",
+                    "preParams": "",
+                    "postParams": ""
+                }
+            },
+            "closeQuery": ")"
+        },
+        "distinct": {
+            "name": "distinct",
+            "extendable": false,
+            "openQuery": ".distinct(",
+            "stages": {
+                "stage_1": {
+                    "label": "Distinct Value",
+                    "preParamsType": "nodeValue",
+                    "preParamsInput": "text",
+                    "preParams": "\"_preParamsValue_\",",
+                    "postParams": ""
+                }
+            },
+            "closeQuery": ")"
+        },
+        "aggregate": {
+            "name": "aggregate",
+            "extendable": true,
+            "openQuery": ".aggregate([",
+            "stages": {
+                "stage_1": {
+                    "label": "Pipeline",
+                    "preParamsType": "nodeValue",
+                    "preParamsInput": "select",
+                    "preParamsValues": "pipelineStages",
+                    "preParams": "{_preParamsValue_:",
+                    "postParams": "}"
+                }
+            },
+            "closeQuery": "])"
+        },
+        "test_me": {
+            "name": "test_me",
+            "extendable": true,
+            "openQuery": ".test_me([",
+            "stages": {
+                "stage_1": {
+                    "label": "Test #",
+                    "preParamsType": "nodeValue",
+                    "preParamsInput": "select",
+                    "preParamsValues": "test",
+                    "preParams": "{_preParamsValue_:",
+                    "postParams": "}"
+                }
+            },
+            "closeQuery": "])"
+        },
+        "coolio": {
+            "name": "coolio",
+            "extendable": false,
+            "openQuery": ".coolio([",
+            "stages": {
+                "stage_1": {
+                    "label": "Coolio #",
+                    "preParamsType": "nodeValue",
+                    "preParamsInput": "select",
+                    "preParamsValues": "test",
+                    "preParams": "{_preParamsValue_:",
+                    "postParams": "}"
+                },
+                "stage_2": {
+                    "label": "Coolio #",
+                    "preParamsType": "nodeValue",
+                    "preParamsInput": "select",
+                    "preParamsValues": "fusball",
+                    "preParams": "{_preParamsValue_:",
+                    "postParams": "}"
+                },
+                "stage_3": {
+                    "label": "Coolio #",
+                    "preParamsType": "nodeValue",
+                    "preParamsInput": "select",
+                    "preParamsValues": "fusball",
+                    "preParams": "{_preParamsValue_:",
+                    "postParams": "}"
+                }
+            },
+            "closeQuery": "])"
+        }
+    },
+    "cursors":{
+        "pretty":{
+            "label":"pretty",
+            "cursorLeft":".pretty(",
+            "cursorRight":")",
+            "value": false,
+            "default": true
+        },
+        "count": {
+            "label":"count",
+            "cursorLeft": ".count(",
+            "cursorRight": ")",
+            "value": false,
+            "default": false
+        },
+        "limit": {
+            "label":"limit",
+            "value": true,
+            "cursorLeft": ".limit(",
+            "cursorRight": ")",
+            "valueType": "select",
+            "selectValues":"limit",
+            "default": false
+        },
+        "sort": {
+            "label":"sort",
+            "value": true,
+            "cursorLeft": ".sort(",
+            "cursorRight": ")",
+            "valueType": "keyValuePair",
+            "default": false
+        }
+    },
+    "selectValues": {
+        "pipelineStages": [
+            "$match",
+            "$sort",
+            "$group",
+            "$hint",
+            "$sum",
+            "-none-"
+        ],
+        "test": [
+            "cocco",
+            "banana",
+            "pineapple"
+        ],
+        "fusball": [
+            "cla",
+            "pab",
+            "jack"
+        ],
+        "limit": [
+            "1",
+            "10",
+            "20",
+            "30",
+            "50",
+            "100"
+        ]
+    },
+    "operators": {
+        ":": {
+            "pre": "",
+            "left": "",
+            "right": ""
+        },
+        "$gt:": {
+            "pre": ":{",
+            "left": "",
+            "right": "}"
+        },
+        "$gte:": {
+            "pre": ":{",
+            "left": "",
+            "right": "}"
+        },
+        "$lt:": {
+            "pre": ":{",
+            "left": "",
+            "right": "}"
+        },
+        "$lte:": {
+            "pre": ":{",
+            "left": "",
+            "right": "}"
+        },
+        "$in:": {
+            "pre": ":{",
+            "left": "[",
+            "right": "]}"
+        },
+        "$not:": {
+            "pre": ":{",
+            "left": "[",
+            "right": "]}"
+        },
+        "$sum:": {
+            "pre": ":{",
+            "left": "",
+            "right": "}"
+        }
+    },
+    "stringTypes": {
+        "string": {
+            "left": "\"",
+            "right": "\""
+        },
+        "regexp": {
+            "left": "/",
+            "right": "/i"
+        },
+        "mongoDates": {
+            "left": "ObjectId(\"",
+            "right": "\")"
+        },
+        "number": {
+            "left": "",
+            "right": ""
+        }
+    }
+}

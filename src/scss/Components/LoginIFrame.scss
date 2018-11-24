@@ -1,0 +1,169 @@
+
+
+
+$iFrameHeight:400px;
+$iFrameWidth:650px;
+
+
+$mainColor: #30303d;
+$border-color: #3b5c4c;
+$text-color:rgb(199, 199, 199);
+
+#iframeBackdrop{
+    position: absolute;
+    width: 100% !important;
+    height: 100% !important;
+    top:0px;
+    left:0px;
+    z-index: 9;
+    background-color: rgba(0,0,0,.4);
+}
+
+#loginiFrame {
+    width: $iFrameWidth;
+    height: $iFrameHeight;
+    background-color: $mainColor;
+    position: fixed;
+    z-index: 10;
+    top: 50%;
+    left: 50%;
+    margin-top: calc(-1 * #{$iFrameHeight} / 2);
+    margin-left: calc(-1 * #{$iFrameWidth} / 2);
+    border: solid 1px $border-color;
+    border-radius: 20px;
+    // box-shadow: 0px 0px 90px #545454;
+    box-shadow: 0px 0px 90px rgb(67, 78, 67);
+    input{
+        font-size: 16px;
+    }
+    #closeOverlayButton{
+        position: absolute;
+        left: calc(100% - 11px);
+        top: -11px;
+        cursor: pointer;
+    }
+    #loginIFrameGrid {
+        width: 100%;
+    }
+    .iframeColHeader {
+        top: -10px;
+        position: relative;
+    }
+    .iframeCol {
+        margin-top: 15px;
+        text-align: center;
+    }
+    #loginCol {
+        padding-left: 0px;
+    }
+
+    #registerCol {
+        border-left: solid 1px $border-color;
+        padding-left:3px;
+    }
+
+    p{
+        strong{
+            color: #8354EC;
+        }
+    }
+    ul {
+        list-style: none;
+        padding-left: 20px;
+        .iframeFiledImgWrap {
+            display: flex;
+        }
+        // li.firstRegisterField{
+        //     margin-top:0px;
+        // }
+        li.firstLoginField{
+            padding-top: 20px !important;
+        }
+        li.loginList {
+            padding-top: 30px;
+            .loginFields {
+                height: 45px;
+                width: 230px;
+                border-radius: 12px;
+            }
+        }
+        li.registerList {
+            padding-top: 15px;
+            .registerFields {
+                height: 30px;
+                width: 230px;
+            }
+        }
+        li.validationMessage{
+            height: 10px;
+            min-height: 10px;
+            text-align: left;
+            position: relative;
+            top:10px;
+            padding-left: 55px;
+            &.registerMessage{
+                padding-left: 42px !important; 
+            }
+            p {
+                color: red;
+                font-size: 12px;
+                margin: 0px;
+            }
+        }
+        li.listSpacer{
+            .messageSpacer{
+                height: 10px;
+            }
+        }
+        li.forgotPasswordList{
+            text-align: right;
+            p {
+                color: $text-color;
+                font-size: 11px;
+                margin-top:0px;
+            }
+        }
+        li.termsAndConditionsList{
+            p {
+                color: $text-color;
+                font-size: 11px;
+                margin-top:14px;
+            }
+        }
+            a {
+                text-decoration: underline;
+            }
+    }
+
+    .registerButtonSpacer{
+        margin-top:5px;
+    }
+
+    .iconWrap{
+        min-width: 40px;
+    }
+
+    .registerFieldImg{
+        color: #d6d6df;
+        // textShadow: 0 1px 0 #d6d6df;
+    }
+
+    .closeOverlayImg{
+        color: $text-color
+    }
+
+    .monkeyLogin {
+        vertical-align: middle;
+        height: 43px;
+        padding-top: 4px;
+        margin-right: 5px;
+        // transform: scaleX(-1);
+    }
+    .bananaLogin{
+        vertical-align: middle;
+        height: 57px;
+        margin-right: 5px;
+        position: relative;
+        top: -8px;
+    }
+}
