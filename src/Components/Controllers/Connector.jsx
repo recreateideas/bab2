@@ -1,16 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { TextInput, FileLoader } from '../BasicComponents';
+import { TextInput, FileLoader, ConnectionNamePopup } from '../../Components';
 import { mapStateToProps, mapDispatchToProps } from '../../store/mapToProps/mapToProps_Connector';
 import { connect } from 'react-redux';
 import { Grid, Row, Col } from 'react-bootstrap';
 import axios from 'axios';
 import { validateFile, validateContent } from '../../tools/fileManagers';
 import { dbDisconnect, dbConnect, updateUserField } from '../../tools/DBClientUtils/DBClientUtils';
+import ReactTooltip from 'react-tooltip';
 import 'regenerator-runtime';
 import 'babel-polyfill';
-
-
 
 const FontAwesome = require('react-fontawesome');
 
@@ -19,7 +18,8 @@ class Connector extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            sf: []
+            sf: [],
+            displayPopup: false,
         };
     }
 
@@ -56,10 +56,10 @@ class Connector extends React.Component {
                     dbConnect(e, this);
                     updateUserField({
                         user: this.userDetails(),
-                        data:{
+                        data: {
                             lastConnectionTime: new Date()
                         }
-                    },this)
+                    }, this)
                 } else {
                     this.props.setConnectionParametersToStore('connectionStatus', 'LoggedOut');
                     this.props.setConnectionParametersToStore('connectionMessage', 'Almost! (you need to be logged in to access your databases.)');
@@ -73,7 +73,7 @@ class Connector extends React.Component {
         }
     }
 
-    userDetails(){
+    userDetails() {
         return {
             _id: this.props.storeUser.ID,
             email: this.props.storeUser.loginEmail,
@@ -158,6 +158,14 @@ class Connector extends React.Component {
         })
     }
 
+    togglePopup() {
+        const isPopupDisplayed = this.state.displayPopup;
+        this.setState({
+            displayPopup: !isPopupDisplayed
+        });
+        console.log(isPopupDisplayed);
+    }
+
     render() {
         const sshMode = this.props.storeConnection.sshMode;
         let displaySSHMessage;
@@ -183,6 +191,13 @@ class Connector extends React.Component {
             <div id='connectorContainer' className='featureContainer'>
                 <div className='connectorTitle'>
                     <FontAwesome name='database' size='4x' /*spin*/ style={{ textShadow: '0 1px 0 #d6d6df' }} />
+                </div>
+                <div id='saveConnectionWrap'>
+                    <ConnectionNamePopup/>
+                    <FontAwesome id='saveConnection' name='save' size='2x' className={`iconButton`} alt='saveConnection' data-tip data-for='tooltip_saveConnection' onClick={this.togglePopup.bind(this)} />
+                    <ReactTooltip id='tooltip_saveConnection' type='warning'>
+                        <span>Save connection params</span>
+                    </ReactTooltip>
                 </div>
                 <form autoComplete="off" id='connectorForm'>
                     <Grid bsClass='keystable contentTable appContent'>
@@ -297,14 +312,14 @@ class Connector extends React.Component {
 
                         <Row className='connectorRow'>
                             <Col xs={12} sm={5}>
-                            <TextInput
+                                <TextInput
                                     inputId={'remoteMongoUser'}
                                     change={this.recordConnectionParams.bind(this)}
                                     value={this.props.storeConnection.remoteMongoUser || ''}
                                     label={'Username...'}
                                     activeClass={enableInput}
                                     disabled={this.props.storeConnection.isDBConnected}
-                                    // inputWidth={70}
+                                // inputWidth={70}
                                 />
                             </Col>
                             <Col xs={12} sm={7}>
@@ -362,7 +377,7 @@ class Connector extends React.Component {
                             <Col xs={12} colSpan={2} className={`connectorMessageContainer`}>
 
                                 <h6 className={`messageWrap ${this.props.storeConnection.isDBConnected === true && this.props.storeConnection.connectionStatus === 'Success' ? 'success' :
-                                    this.props.storeConnection.connectionStatus === 'Error' ? 'error' : this.props.storeConnection.connectionStatus === 'LoggedOut' ? 'warning' :'hidden'}`}>
+                                    this.props.storeConnection.connectionStatus === 'Error' ? 'error' : this.props.storeConnection.connectionStatus === 'LoggedOut' ? 'warning' : 'hidden'}`}>
                                     {this.props.storeConnection.connectionMessage}
                                 </h6>
                             </Col>

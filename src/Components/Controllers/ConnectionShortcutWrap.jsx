@@ -10,7 +10,7 @@ class ConnectionShortcutWrap extends React.Component {
         return (
             <div id="connectionShortcutWrap" onClick={this.props.onClick}>
                 <ConnectionShortcut />
-                <ConnectionShortcut />
+                <ConnectionShortcut />  
             </div>
         )
     }
@@ -21,3 +21,4 @@ ConnectionShortcutWrap.propTypes = {
 };
 
 export default ConnectionShortcutWrap;
+ 
