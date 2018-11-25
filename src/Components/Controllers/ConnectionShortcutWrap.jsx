@@ -7,13 +7,25 @@ import { connect } from 'react-redux';
 class ConnectionShortcutWrap extends React.Component {
 
     setConnectionParams(e){
+        if(!this.props.storeConnection.isDBConnected){
+            const savedConnections = this.props.savedConnections;
+            const label = e.target.className.replace('shortcutLabel ','').replace('connection','');
+            const connection = savedConnections[label];
+            this.props.setAllConnectionParametersToStore(connection);
+        }
+    }
+
+    deleteConnection(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        let newSavedConnections = {};
+        const label = e.target.id.replace('connectionDelete','');
         const savedConnections = this.props.savedConnections;
-        const label = e.target.className.replace('shortcutLabel ','').replace('connection','');
-        console.log('savedConnections', savedConnections);
-        console.log(label);
-        const connection = savedConnections[label];
-        console.log(connection);
-        this.props.setAllConnectionParametersToStore(connection);
+        const customId = this.props.storeUser.customId;
+        delete savedConnections[label];
+        newSavedConnections[customId] = savedConnections;
+        this.props.setSavedConnectionsToStore(savedConnections);
+        localStorage.setItem('savedConnections',JSON.stringify(newSavedConnections));
     }
 
     renderConnectionShortcuts(connection, index){
@@ -22,6 +34,7 @@ class ConnectionShortcutWrap extends React.Component {
                 key={index}
                 label={connection.label}
                 onClick={this.setConnectionParams.bind(this)}
+                onDelete={this.deleteConnection.bind(this)}
             />
         );
     }

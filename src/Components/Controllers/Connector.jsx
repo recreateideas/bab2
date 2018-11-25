@@ -101,7 +101,7 @@ class Connector extends React.Component {
 
     handleFilesSelect(e) {
         const files = e.target.files; // FileList object
-        // console.log(e.target.value);
+
         [...files].forEach(file => {
             if (validateFile(file, { maxSize: 4, excludeFormat: '[.*]+' })) { //validateContent
                 const reader = new FileReader();
@@ -131,7 +131,6 @@ class Connector extends React.Component {
 
     saveFileToState(file) {
         let output = [];
-        // console.log(file);
         output.push({
             name: file.name,
             size: Math.round(file.size * 0.001),
@@ -146,7 +145,7 @@ class Connector extends React.Component {
     validateFilePath(e) {
         this.props.setConnectionParametersToStore('sshPath', e.target.value);
     }
-    //  this.props.setConnectionParametersToStore('sshKey', '');
+
     togglePath() {
         const sshMode = this.props.storeConnection.sshMode;
         const toggledMode = sshMode === 'file' ? 'path' : 'file';
@@ -162,10 +161,9 @@ class Connector extends React.Component {
 
     togglePopup() {
         const isPopupDisplayed = this.state.displayPopup;
-        const connectionTitle = this.props.storeConnection.lable || '';
-        console.log(this.props.storeConnection);
+        const connectionTitle = this.props.storeConnection.label || '';
         this.setState({
-            // connectionEditedName: connectionTitle,
+            connectionEditedName: connectionTitle,
             displayPopup: !isPopupDisplayed
         });
     }
@@ -175,8 +173,6 @@ class Connector extends React.Component {
         e.stopPropagation();
         this.setState({
             displayPopup: false,
-            // titleValidation: true,
-            // connectionEditedName:'',
         });
     }
 
@@ -193,7 +189,6 @@ class Connector extends React.Component {
             savedConnections[customId][connectionName].label = connectionName;
             savedConnections[customId][connectionName].timeStamp = +new Date();
             localStorage.setItem('savedConnections',JSON.stringify(savedConnections));
-            console.log(savedConnections[customId]);
             this.props.setSavedConnectionsToStore(savedConnections[customId]);
             this.setState({
                 connectionEditedName: '',
@@ -240,13 +235,13 @@ class Connector extends React.Component {
         const displayField = sshMode === 'file' ? 'hidden' : 'show';
         const enableInput = this.props.storeConnection.isDBConnected === false || this.props.storeConnection.isDBConnected === undefined ? '' : 'inActiveDB';
         const enableButtonEvents = this.props.storeConnection.isDBConnected === false || this.props.storeConnection.isDBConnected === undefined ? '' : 'removeEvents';
-        
+        const connectionLabel = this.props.storeConnection.label && this.props.storeUser.loggedIn ? this.props.storeConnection.label : '';
         const titleValidationClass = this.state.titleValidation ? '' : 'not_validField';
         return (
             <div id='connectorContainer' className='featureContainer'>
                 <div className='connectorTitle'>
-                    <FontAwesome name='database' size='4x' /*spin*/ style={{ textShadow: '0 1px 0 #d6d6df' }} />
-                    <div id='connectionTitle'><h4>{this.props.storeConnection.label}</h4></div>
+                    <FontAwesome name='database' size='4x' style={{ textShadow: '0 1px 0 #d6d6df' }} />
+                    <div id='connectionTitle'><h4>{connectionLabel}</h4></div>
                 </div>
                 <div id='saveConnectionWrap'>
                     <ConnectionNamePopup

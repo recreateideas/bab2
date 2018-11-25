@@ -1,9 +1,10 @@
 import constants from '../constants';
 
 const mapStateToProps = (state) => {
-    const customId = state.user.customId;
     return {
         savedConnections: state.user.savedConnections ? state.user.savedConnections : {},
+        storeUser: state.user,
+        storeConnection: state.connection
     }
 }
 
@@ -15,6 +16,13 @@ const mapDispatchToProps = (dispatch) => {
                 params,
             }
             dispatch(action)
+        },
+        setSavedConnectionsToStore: (savedConnectionsCustomId) => {
+            const action = {
+                type: constants.SAVE_SAVED_CONNECTIONS,
+                savedConnectionsCustomId,
+            }
+            dispatch(action);
         },
     }
 }

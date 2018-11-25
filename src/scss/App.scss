@@ -20,3 +20,12 @@
 @import 'components/Loaders.scss';
 @import 'components/ConnectionPopup.scss';
 // app css
+
+.connectionOuterWrap{
+    display: flex;
+    // .deleteConnectionIconWrap{
+    //     position: relative;
+    //     top: -12px;
+    //     left: -8px;
+    // }
+}

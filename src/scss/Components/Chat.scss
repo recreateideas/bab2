@@ -331,10 +331,6 @@ $message-received-color: #bcd0cd;
             position: absolute;
             left: -9px;
             top: -14px;
-            .deleteAttachmentIcon{
-                color: rgb(255, 64, 64);
-                cursor: pointer;
-            }
         }
         p{
             color: #0d5a9c;
@@ -342,6 +338,11 @@ $message-received-color: #bcd0cd;
             position: relative;
         }
     }
+}
+
+.deleteAttachmentIcon{
+    color: rgb(255, 64, 64);
+    cursor: pointer;
 }
 
 #typeBox {

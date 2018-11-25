@@ -13,12 +13,6 @@ class ConnectionNamePopup extends React.Component {
         };
     }
 
-    
-    componentWillMount() {
-        const ssConnectionString = localStorage.getItem('savedConnections');
-    }
-    
-
     render() {
         const display = this.props.display === true ? 'show' : 'hidden';
         return (

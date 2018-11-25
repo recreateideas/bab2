@@ -12,6 +12,12 @@ const loginUser = (component, id, email, nickname) => {
     component.props.recordUserDetailsToStore('customId', id);
     component.props.recordUserDetailsToStore('loginEmail', email);
     component.props.recordUserDetailsToStore('nickname', nickname);
+    setSavedConnectionsToStore(component,id);
+};
+
+const setSavedConnectionsToStore = (component,customId) => {
+    const savedConnections = localStorage.getItem('savedConnections') ? JSON.parse(localStorage.getItem('savedConnections')) : {};
+    component.props.setSavedConnectionsToStore(savedConnections[customId]);
 };
 
 const handleLoginRejection = () => {
