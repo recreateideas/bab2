@@ -20,6 +20,7 @@ class Connector extends React.Component {
         this.state = {
             sf: [],
             displayPopup: false,
+            connectionEditedName: '',
         };
     }
 
@@ -163,7 +164,6 @@ class Connector extends React.Component {
         this.setState({
             displayPopup: !isPopupDisplayed
         });
-        console.log(isPopupDisplayed);
     }
 
     closePopup(e) {
@@ -172,7 +172,33 @@ class Connector extends React.Component {
         this.setState({
             displayPopup: false
         });
-        console.log(this.state.displayPopup);
+    }
+
+    saveConnectionName() {
+        const connectionName = this.state.connectionEditedName;
+        const connectionParams = this.props.storeConnection;
+        const customId = this.props.storeUser.customId;
+        let savedConnections = localStorage.getItem('savedConnections') ? JSON.parse(localStorage.getItem('savedConnections')) : {};
+        if (!savedConnections[customId]) {
+            savedConnections[customId] = {};
+        }
+        savedConnections[customId][connectionName] = connectionParams;
+        savedConnections[customId][connectionName].label = connectionName;
+        savedConnections[customId][connectionName].timeStamp = +new Date();
+        localStorage.setItem('savedConnections',JSON.stringify(savedConnections));
+        console.log(savedConnections[customId]);
+        this.props.setSavedConnectionsToStore(savedConnections[customId]);
+        this.setState({
+            connectionEditedName: '',
+            displayPopup: false
+        });
+    }
+
+    editConnectionName(e) {
+        const value = e.target.value;
+        this.setState({
+            connectionEditedName: value,
+        });
     }
 
     render() {
@@ -205,6 +231,9 @@ class Connector extends React.Component {
                     <ConnectionNamePopup
                        display={this.state.displayPopup}
                        closePopup={this.closePopup.bind(this)}
+                       onSave={this.saveConnectionName.bind(this)}
+                       onChange={this.editConnectionName.bind(this)}
+                       connectionEditedName={this.state.connectionEditedName}
                     />
                     <FontAwesome id='saveConnection' name='save' size='2x' className={`iconButton`} alt='saveConnection' data-tip data-for='tooltip_saveConnection' onClick={this.togglePopup.bind(this)} />
                     <ReactTooltip id='tooltip_saveConnection' type='warning'>

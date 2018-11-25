@@ -8,6 +8,8 @@ const connection = (state = initialState.connection, action) => {
             return Object.assign({}, state, { ...state, isDBConnected: action.isDBConnected });
         case constants.SET_CONNECTION_PARAMS:
             return Object.assign({}, state, { ...state, [action.param]: action.value });
+        case constants.SET_ALL_CONNECTION_PARAMS:
+            return Object.assign({}, state, action.params);
         case constants.SET_CONNECTION_OBJECT:
             return Object.assign({}, state, action.connection );
             // return Object.assign({}, state, { connection: { ...state.connection, [action.param]: action.value } });

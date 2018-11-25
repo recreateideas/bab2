@@ -29,9 +29,15 @@ class App extends React.Component {
             console.log('welcome back chimp!');
             this.props.recordUserObjectToStore(user);
             connectToSocket(this, user.customId, user.nickname);
+            this.setSavedConnectionsToStore(user.customId);
             this.props.loadLocalStorageMessagesToStore();
             // update messages with waitingRoom
         }
+    }
+
+    setSavedConnectionsToStore(customId){
+        const savedConnections = localStorage.getItem('savedConnections') ? JSON.parse(localStorage.getItem('savedConnections')) : {};
+        this.props.setSavedConnectionsToStore(savedConnections[customId]);
     }
 
     displayConnectedBadge() {

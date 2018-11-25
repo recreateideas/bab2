@@ -13,6 +13,13 @@ const mapStateToProps = (state) => { // use this also to select what propsApp sh
 
 const mapDispatchToProps = (dispatch) => {
     return {
+        setSavedConnectionsToStore: (savedConnectionsCustomId) => {
+            const action = {
+                type: constants.SAVE_SAVED_CONNECTIONS,
+                savedConnectionsCustomId,
+            }
+            dispatch(action);
+        },
         setResultsToStore: (results) => {
             const action = {
                 type: constants.SET_RESULTS,

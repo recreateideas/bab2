@@ -9,6 +9,13 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
+        setSavedConnectionsToStore: (savedConnectionsCustomId) => {
+            const action = {
+                type: constants.SAVE_SAVED_CONNECTIONS,
+                savedConnectionsCustomId,
+            }
+            dispatch(action);
+        },
         recordUserObjectToStore: (user) => {
             const action = {
                 type: constants.RECORD_USER_OBJECT,

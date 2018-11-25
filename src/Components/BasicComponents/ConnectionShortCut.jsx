@@ -7,9 +7,11 @@ class ConnectionShortcut extends React.Component {
 
     render() {
         return (
-            <div className="connectionShortcut" onClick={this.props.onClick}>
-                <FontAwesome  name='database' className='shortcutIcon' />
-                <div className='shortcutLabel'>connectorWrap connectorWrap</div>
+            <div onClick={this.props.onClick} className={`connectionShortcut connection_${this.props.label}`}>
+                <FontAwesome  name='database' className={`shortcutIcon connection_${this.props.label}`} />
+                <div className={`shortcutLabel connection_${this.props.label}`}>
+                    {this.props.label}
+                </div>\
             </div>
         )
     }

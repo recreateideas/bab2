@@ -13,23 +13,11 @@ class ConnectionNamePopup extends React.Component {
         };
     }
 
-    editConnectionName(e) {
-        const value = e.target.value;
-        this.setState({
-            connectionName: value,
-        });
+    
+    componentWillMount() {
+        const ssConnectionString = localStorage.getItem('savedConnections');
     }
-
-    saveConnectionName() {
-        const connection = this.props.storeConnection;
-        const customId = this.props.storeUser.customId;
-        console.log(connection);
-        console.log(customId);
-        let savedConnections = localStorage.getItem('savedConnections') ? JSON.parse(localStorage.getItem('savedConnections')) : {};
-        if (!savedConnections[customId]) {
-            savedConnections[customId] = {};
-        }
-    }
+    
 
     render() {
         const display = this.props.display === true ? 'show' : 'hidden';
@@ -41,14 +29,14 @@ class ConnectionNamePopup extends React.Component {
                     </div>
                     <TextInput
                         inputId={'connectionNameField'}
-                        change={this.editConnectionName.bind(this)}
-                        value={this.state.connectionName}
+                        change={this.props.onChange}
+                        value={this.props.connectionEditedName}
                         label={'enter connection name..'}
                         addClass={`iframeFields`}
                     />
                     <div className='popupButtonWrap'>
                         <Button2
-                            click={this.saveConnectionName.bind(this)}
+                            click={this.props.onSave}
                             buttonId='popupSaveButton'
                             value='Save'
                             addClass='connectionPopupButton'
