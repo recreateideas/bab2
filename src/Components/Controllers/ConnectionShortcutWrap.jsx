@@ -8,7 +8,9 @@ class ConnectionShortcutWrap extends React.Component {
 
     setConnectionParams(e){
         const savedConnections = this.props.savedConnections;
-        const label = e.target.className.replace('shortcutLabel ','').split('_')[1];
+        const label = e.target.className.replace('shortcutLabel ','').replace('connection','');
+        console.log('savedConnections', savedConnections);
+        console.log(label);
         const connection = savedConnections[label];
         console.log(connection);
         this.props.setAllConnectionParametersToStore(connection);

@@ -32,7 +32,7 @@ class ConnectionNamePopup extends React.Component {
                         change={this.props.onChange}
                         value={this.props.connectionEditedName}
                         label={'enter connection name..'}
-                        addClass={`iframeFields`}
+                        addClass={`iframeFields ${this.props.addClass}`}
                     />
                     <div className='popupButtonWrap'>
                         <Button2

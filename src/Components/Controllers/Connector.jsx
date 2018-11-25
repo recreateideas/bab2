@@ -20,6 +20,7 @@ class Connector extends React.Component {
         this.state = {
             sf: [],
             displayPopup: false,
+            titleValidation: true,
             connectionEditedName: '',
         };
     }
@@ -161,7 +162,10 @@ class Connector extends React.Component {
 
     togglePopup() {
         const isPopupDisplayed = this.state.displayPopup;
+        const connectionTitle = this.props.storeConnection.lable || '';
+        console.log(this.props.storeConnection);
         this.setState({
+            // connectionEditedName: connectionTitle,
             displayPopup: !isPopupDisplayed
         });
     }
@@ -170,35 +174,50 @@ class Connector extends React.Component {
         e.preventDefault();
         e.stopPropagation();
         this.setState({
-            displayPopup: false
+            displayPopup: false,
+            // titleValidation: true,
+            // connectionEditedName:'',
         });
     }
 
     saveConnectionName() {
         const connectionName = this.state.connectionEditedName;
-        const connectionParams = this.props.storeConnection;
-        const customId = this.props.storeUser.customId;
-        let savedConnections = localStorage.getItem('savedConnections') ? JSON.parse(localStorage.getItem('savedConnections')) : {};
-        if (!savedConnections[customId]) {
-            savedConnections[customId] = {};
+        if(connectionName && connectionName !== ''){
+            const connectionParams = this.props.storeConnection;
+            const customId = this.props.storeUser.customId;
+            let savedConnections = localStorage.getItem('savedConnections') ? JSON.parse(localStorage.getItem('savedConnections')) : {};
+            if (!savedConnections[customId]) {
+                savedConnections[customId] = {};
+            }
+            savedConnections[customId][connectionName] = connectionParams;
+            savedConnections[customId][connectionName].label = connectionName;
+            savedConnections[customId][connectionName].timeStamp = +new Date();
+            localStorage.setItem('savedConnections',JSON.stringify(savedConnections));
+            console.log(savedConnections[customId]);
+            this.props.setSavedConnectionsToStore(savedConnections[customId]);
+            this.setState({
+                connectionEditedName: '',
+                titleValidation: true,
+                displayPopup: false
+            });
+        } else {
+            this.setState({titleValidation: false,});
         }
-        savedConnections[customId][connectionName] = connectionParams;
-        savedConnections[customId][connectionName].label = connectionName;
-        savedConnections[customId][connectionName].timeStamp = +new Date();
-        localStorage.setItem('savedConnections',JSON.stringify(savedConnections));
-        console.log(savedConnections[customId]);
-        this.props.setSavedConnectionsToStore(savedConnections[customId]);
-        this.setState({
-            connectionEditedName: '',
-            displayPopup: false
-        });
     }
 
     editConnectionName(e) {
         const value = e.target.value;
-        this.setState({
-            connectionEditedName: value,
-        });
+        if(value && value !== ''){
+            this.setState({
+                titleValidation: true,
+                connectionEditedName: value,
+            });
+        } else {
+            this.setState({
+                titleValidation: false,
+                connectionEditedName: value,
+            });
+        }
     }
 
     render() {
@@ -221,11 +240,13 @@ class Connector extends React.Component {
         const displayField = sshMode === 'file' ? 'hidden' : 'show';
         const enableInput = this.props.storeConnection.isDBConnected === false || this.props.storeConnection.isDBConnected === undefined ? '' : 'inActiveDB';
         const enableButtonEvents = this.props.storeConnection.isDBConnected === false || this.props.storeConnection.isDBConnected === undefined ? '' : 'removeEvents';
-        // console.log(this.props.storeConnection.connectionStatus);
+        
+        const titleValidationClass = this.state.titleValidation ? '' : 'not_validField';
         return (
             <div id='connectorContainer' className='featureContainer'>
                 <div className='connectorTitle'>
                     <FontAwesome name='database' size='4x' /*spin*/ style={{ textShadow: '0 1px 0 #d6d6df' }} />
+                    <div id='connectionTitle'><h4>{this.props.storeConnection.label}</h4></div>
                 </div>
                 <div id='saveConnectionWrap'>
                     <ConnectionNamePopup
@@ -234,6 +255,7 @@ class Connector extends React.Component {
                        onSave={this.saveConnectionName.bind(this)}
                        onChange={this.editConnectionName.bind(this)}
                        connectionEditedName={this.state.connectionEditedName}
+                       addClass={titleValidationClass}
                     />
                     <FontAwesome id='saveConnection' name='save' size='2x' className={`iconButton`} alt='saveConnection' data-tip data-for='tooltip_saveConnection' onClick={this.togglePopup.bind(this)} />
                     <ReactTooltip id='tooltip_saveConnection' type='warning'>
