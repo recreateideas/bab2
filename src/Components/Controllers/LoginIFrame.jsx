@@ -203,7 +203,7 @@ class LoginIFrame extends React.Component {
         const arePasswordsMatching = this.validateClass(this.state.validation.register.passWord.matchingPasswords);
         return (
             <div id='iframeBackdrop' style={{ display: display }} onClick={this.props.closeLogin}>
-                <div id='loginiFrame' className={loggedInFrame} onClick={(e) => { e.preventDefault(); e.stopPropagation() }}>
+                <div id='loginiFrame' className={loggedInFrame} onClick={(e) => { e.preventDefault(); e.stopPropagation(); }}>
                     <div id='closeOverlayButton' onClick={this.props.closeLogin}>
                         <FontAwesome name='times' size='2x' /*spin*/ className='closeOverlayImg' />
                     </div>

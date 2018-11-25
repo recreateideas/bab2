@@ -36,12 +36,7 @@ $text-color:rgb(199, 199, 199);
     input{
         font-size: 16px;
     }
-    #closeOverlayButton{
-        position: absolute;
-        left: calc(100% - 11px);
-        top: -11px;
-        cursor: pointer;
-    }
+
     #loginIFrameGrid {
         width: 100%;
     }
@@ -148,10 +143,6 @@ $text-color:rgb(199, 199, 199);
         // textShadow: 0 1px 0 #d6d6df;
     }
 
-    .closeOverlayImg{
-        color: $text-color
-    }
-
     .monkeyLogin {
         vertical-align: middle;
         height: 43px;
@@ -166,4 +157,15 @@ $text-color:rgb(199, 199, 199);
         position: relative;
         top: -8px;
     }
+}
+
+#closeOverlayButton{
+    position: absolute;
+    left: calc(100% - 11px);
+    top: -11px;
+    cursor: pointer;
+}
+
+.closeOverlayImg{
+    color: $text-color
 }

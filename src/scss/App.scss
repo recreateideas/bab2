@@ -58,6 +58,8 @@
 
 $fill:#cacaca;
 $border: #222;
+$mainColor: #30303d;
+$border-color: #3b5c4c;
 #saveConnectionWrap {
     position: initial;
     right: 5px;
@@ -73,16 +75,33 @@ $border: #222;
     #connectionNamePopup {
         width: fit-content;
         text-align: center;
-        position: relative;
+        position: absolute;
+        background-color: $mainColor;
+        z-index: 10;
+        top: 40px;
+        right: 40px;
+        border: solid 1px $border-color;
+        border-radius: 20px;
+        padding: 30px;
+        box-shadow: 0px 0px 90px rgb(67, 78, 67);
+    } // box-shadow: 0px 0px 90px #545454;
+    input {
+        font-size: 16px;
+        margin-bottom: 15px;
+    }
+    .connectionPopupButton{
+        margin: 0px 7px;
     }
 }
 
-.overlayBackdrop {
+#popupBackdrop {
     position: absolute;
     width: 100% !important;
     height: 100% !important;
     top: 0px;
     left: 0px;
     z-index: 9;
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 5px;
+
 }

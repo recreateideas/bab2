@@ -166,6 +166,15 @@ class Connector extends React.Component {
         console.log(isPopupDisplayed);
     }
 
+    closePopup(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        this.setState({
+            displayPopup: false
+        });
+        console.log(this.state.displayPopup);
+    }
+
     render() {
         const sshMode = this.props.storeConnection.sshMode;
         let displaySSHMessage;
@@ -193,7 +202,10 @@ class Connector extends React.Component {
                     <FontAwesome name='database' size='4x' /*spin*/ style={{ textShadow: '0 1px 0 #d6d6df' }} />
                 </div>
                 <div id='saveConnectionWrap'>
-                    <ConnectionNamePopup/>
+                    <ConnectionNamePopup
+                       display={this.state.displayPopup}
+                       closePopup={this.closePopup.bind(this)}
+                    />
                     <FontAwesome id='saveConnection' name='save' size='2x' className={`iconButton`} alt='saveConnection' data-tip data-for='tooltip_saveConnection' onClick={this.togglePopup.bind(this)} />
                     <ReactTooltip id='tooltip_saveConnection' type='warning'>
                         <span>Save connection params</span>
