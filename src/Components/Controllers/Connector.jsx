@@ -185,10 +185,10 @@ class Connector extends React.Component {
             if (!savedConnections[customId]) {
                 savedConnections[customId] = {};
             }
-            savedConnections[customId][connectionName] = connectionParams;
-            // delete savedConnections[customId][connectionName].isDBConnected;
-            // delete savedConnections[customId][connectionName].connectionStatus;
-            // delete savedConnections[customId][connectionName].connectionMessage;
+            savedConnections[customId][connectionName] = Object.assign({},connectionParams);
+            savedConnections[customId][connectionName].isDBConnected = false;
+            savedConnections[customId][connectionName].connectionStatus = 'Disconnected';
+            savedConnections[customId][connectionName].connectionMessage = '';
             savedConnections[customId][connectionName].label = connectionName;
             savedConnections[customId][connectionName].timeStamp = +new Date();
             localStorage.setItem('savedConnections',JSON.stringify(savedConnections));
