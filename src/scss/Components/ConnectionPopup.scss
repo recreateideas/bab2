@@ -4,6 +4,9 @@
     top: 42px;
     margin-left: 2px;
     cursor: pointer;
+    &.disabled{
+        cursor: not-allowed !important;
+    }
     .selectedShortcut {
         background: #f3f3f3 !important;
         padding-left: 6px !important;

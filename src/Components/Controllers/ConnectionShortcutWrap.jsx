@@ -56,8 +56,9 @@ class ConnectionShortcutWrap extends React.Component {
 
     render() {
         const savedConnections = this.props.savedConnections;
+        const disabledClass = this.props.storeConnection.isDBConnected ? 'disabled' : '';
         return (
-            <div id="connectionShortcutWrap" onClick={this.props.onClick}>
+            <div id="connectionShortcutWrap" onClick={this.props.onClick} className={disabledClass}>
                 {Object.keys(savedConnections).map((key, index) => this.renderConnectionShortcuts(savedConnections[key], index))}
             </div>
         )
