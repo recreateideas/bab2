@@ -32,6 +32,10 @@ class ConnectionShortcutWrap extends React.Component {
             const savedConnections = this.props.savedConnections;
             const customId = this.props.storeUser.customId;
             delete savedConnections[label];
+            if(this.state.selectedShortcut === label){
+                const defaultConnection = this.props._connection;
+                this.props.setAllConnectionParametersToStore(defaultConnection);
+            }
             newSavedConnections[customId] = savedConnections;
             this.props.setSavedConnectionsToStore(savedConnections);
             localStorage.setItem('savedConnections', JSON.stringify(newSavedConnections));

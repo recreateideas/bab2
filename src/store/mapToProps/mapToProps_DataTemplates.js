@@ -48,17 +48,6 @@ const mapStateToTemplatesProps = (state) => { // use this also to select what pr
             passWord:'',
             confirmPassWord:'',
         },
-        _connection: {
-            isDBConnected: false,
-            connectionStatus: 'Disconnected',
-            remoteHostName: 'localhost',
-            remoteMongoPort: '27017',
-            remoteMongoInstance: 'mongodb',
-            db: 'test',
-            sshConnection: false,
-            sshPath: '',
-            sshMode: 'file'
-        },
     }
 }
 

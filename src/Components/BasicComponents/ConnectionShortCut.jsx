@@ -27,7 +27,7 @@ class ConnectionShortcut extends React.Component {
     render() {
         const displayCloseButtonClass = this.state.displayDeleteButton ? 'show' : 'hidden';
         const selectedShortcutClass = this.props.selectedShortcut === this.props.label ? 'selectedShortcut' : '';
-        console.log(selectedShortcutClass);
+        // console.log(selectedShortcutClass);
         return (
             <div onClick={this.shortcutClicked.bind(this)} onMouseEnter={this.displayCloseButton.bind(this)} onMouseLeave={this.hideCloseButton.bind(this)} className={`connectionOuterWrap connection${this.props.label}`}>
                 <div className={`connectionShortcut ${selectedShortcutClass}`}>
