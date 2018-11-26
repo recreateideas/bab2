@@ -186,10 +186,14 @@ class Connector extends React.Component {
                 savedConnections[customId] = {};
             }
             savedConnections[customId][connectionName] = connectionParams;
+            // delete savedConnections[customId][connectionName].isDBConnected;
+            // delete savedConnections[customId][connectionName].connectionStatus;
+            // delete savedConnections[customId][connectionName].connectionMessage;
             savedConnections[customId][connectionName].label = connectionName;
             savedConnections[customId][connectionName].timeStamp = +new Date();
             localStorage.setItem('savedConnections',JSON.stringify(savedConnections));
             this.props.setSavedConnectionsToStore(savedConnections[customId]);
+            console.log(savedConnections[customId][connectionName]);
             this.setState({
                 connectionEditedName: '',
                 titleValidation: true,
