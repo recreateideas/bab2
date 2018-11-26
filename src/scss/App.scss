@@ -23,9 +23,17 @@
 
 .connectionOuterWrap{
     display: flex;
+    position: inherit;
+    width: fit-content;
     // .deleteConnectionIconWrap{
     //     position: relative;
     //     top: -12px;
     //     left: -8px;
     // }
+}
+
+.deleteConnectionIconWrap{
+    position: absolute;
+    left: calc( 100% - 1px );
+    top: -2px;
 }

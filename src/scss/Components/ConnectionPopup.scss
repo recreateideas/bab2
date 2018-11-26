@@ -4,15 +4,38 @@
     top: 42px;
     margin-left: 2px;
     cursor: pointer;
+    .selectedShortcut {
+        background: #f3f3f3 !important;
+        padding-left: 6px !important;
+        padding-right: 11px !important;
+        box-shadow: 0px 0px 10px#8354EC !important;
+        .shortcutLabel{
+            font-size: 15.5px !important;
+            top: 3px !important;
+        }
+        .shortcutIcon{
+            font-size: 17px !important;
+            color: green !important;
+        }
+    }
     .connectionShortcut {
-        &:hover,
-        &:active {
-            background: #e0e0e0;
+        &:hover{
+            background: #f3f3f3;
+            padding-left: 6px;
+            padding-right: 11px;
+            .shortcutLabel{
+                font-size: 15.5px;
+                top: 3px;
+            }
+            .shortcutIcon{
+                font-size: 17px;
+                color: #464646;
+            }
         }
         margin-top: 3px;
         background: #cacaca;
-        border-top-right-radius: 3px;
-        border-bottom-right-radius: 3px;
+        border-top-right-radius: 4px;
+        border-bottom-right-radius: 4px;
         padding-left: 5px;
         padding-top: 5px;
         padding-bottom: 5px;
@@ -21,7 +44,7 @@
         flex-direction: row;
         .shortcutIcon {
             padding: 5px;
-            color: green;
+            color: #464646;
         }
         .shortcutLabel {
             position: relative;

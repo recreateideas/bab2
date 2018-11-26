@@ -1,40 +1,51 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {ConnectionShortcut} from '../BasicComponents';
+import { ConnectionShortcut } from '../BasicComponents';
 import { mapStateToProps, mapDispatchToProps } from '../../store/mapToProps/mapToProps_ConnectionShortcutWrap';
 import { connect } from 'react-redux';
 
 class ConnectionShortcutWrap extends React.Component {
 
-    setConnectionParams(e){
-        if(!this.props.storeConnection.isDBConnected){
+    constructor() {
+        super();
+        this.state = {
+            selectedShortcut: '',
+        }
+    }
+
+    setConnectionParams(e) {
+        if (!this.props.storeConnection.isDBConnected) {
             const savedConnections = this.props.savedConnections;
-            const label = e.target.className.replace('shortcutLabel ','').replace('connection','');
+            const label = e.target.className.replace('shortcutLabel ', '').replace('connection', '');
             const connection = savedConnections[label];
             this.props.setAllConnectionParametersToStore(connection);
+            this.setState({ selectedShortcut: label });
         }
     }
 
     deleteConnection(e) {
         e.preventDefault();
         e.stopPropagation();
-        let newSavedConnections = {};
-        const label = e.target.id.replace('connectionDelete','');
-        const savedConnections = this.props.savedConnections;
-        const customId = this.props.storeUser.customId;
-        delete savedConnections[label];
-        newSavedConnections[customId] = savedConnections;
-        this.props.setSavedConnectionsToStore(savedConnections);
-        localStorage.setItem('savedConnections',JSON.stringify(newSavedConnections));
+        if (!this.props.storeConnection.isDBConnected) {
+            let newSavedConnections = {};
+            const label = e.target.id.replace('connectionDelete', '');
+            const savedConnections = this.props.savedConnections;
+            const customId = this.props.storeUser.customId;
+            delete savedConnections[label];
+            newSavedConnections[customId] = savedConnections;
+            this.props.setSavedConnectionsToStore(savedConnections);
+            localStorage.setItem('savedConnections', JSON.stringify(newSavedConnections));
+        }
     }
 
-    renderConnectionShortcuts(connection, index){
+    renderConnectionShortcuts(connection, index) {
         return (
             <ConnectionShortcut
                 key={index}
                 label={connection.label}
                 onClick={this.setConnectionParams.bind(this)}
                 onDelete={this.deleteConnection.bind(this)}
+                selectedShortcut={this.state.selectedShortcut}
             />
         );
     }
@@ -43,7 +54,7 @@ class ConnectionShortcutWrap extends React.Component {
         const savedConnections = this.props.savedConnections;
         return (
             <div id="connectionShortcutWrap" onClick={this.props.onClick}>
-                     {Object.keys(savedConnections).map((key, index) => this.renderConnectionShortcuts(savedConnections[key], index))}
+                {Object.keys(savedConnections).map((key, index) => this.renderConnectionShortcuts(savedConnections[key], index))}
             </div>
         )
     }
@@ -54,4 +65,3 @@ ConnectionShortcutWrap.propTypes = {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ConnectionShortcutWrap);
- 

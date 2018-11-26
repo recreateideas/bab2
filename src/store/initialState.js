@@ -5,10 +5,10 @@ const initialState = {
     connection: {
         isDBConnected: false,
         connectionStatus: 'Disconnected',
-        remoteHostName: 'localhost',
-        remoteMongoPort: '27017',
-        remoteMongoInstance: 'mongodb',
-        db: 'test',
+        remoteHostName: '',
+        remoteMongoPort: '',
+        remoteMongoInstance: '',
+        db: '',
         sshConnection: false,
         sshPath: '',
         sshMode: 'file'
