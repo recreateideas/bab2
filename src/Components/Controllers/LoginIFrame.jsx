@@ -139,6 +139,7 @@ class LoginIFrame extends React.Component {
         this.setValidationState('register', 'registerEmail', { EmailValidate: null, message: ' ', });
         this.setValidationState('login', 'loginEmail', { EmailValidate: null, message: ' ', });
         this.props.setSavedConnectionsToStore({});
+        this.props.setAllConnectionParametersToStore();
     }
 
     validateClass(field) {

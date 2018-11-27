@@ -134,7 +134,9 @@ class QueryTab extends React.Component {
         const array = getElementsFromConfig(this.props.storeConfig, 'queries');
         return (
             <div id="queryTab" className="tab" >
-
+                <div id='queryConnectionName'>
+                    <div className='XLTitle'>{this.props.storeConnectionName}</div>
+                </div>
                 <div id='queryComponent'>
                     <Grid id='querySetupTable' className='keystable contentTable appContent'>
                         <Row>

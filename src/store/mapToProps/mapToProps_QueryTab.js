@@ -8,6 +8,7 @@ const mapStateToProps = (state) => {
         storeQueryType: state.query.queryType,
         storeQuery: state.query,
         storeQueryCollectionState: state.queryCollectionState,
+        storeConnectionName: state.connection.label,
         _collectionStateTemplate: {
             isActive : true,
             preStage : '',

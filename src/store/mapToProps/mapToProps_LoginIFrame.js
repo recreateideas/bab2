@@ -20,6 +20,25 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
+        setAllConnectionParametersToStore: (params) => {
+            const _connection = {
+                isDBConnected: false,
+                connectionStatus: 'Disconnected',
+                remoteHostName: '',
+                remoteMongoPort: '27017',
+                remoteMongoInstance: 'mongodb',
+                db: '',
+                label: '',
+                sshConnection: false,
+                sshPath: '',
+                sshMode: 'file'
+            }
+            const action = {
+                type: constants.SET_ALL_CONNECTION_PARAMS,
+                params: params ? params : _connection,
+            }
+            dispatch(action)
+        },
         setSavedConnectionsToStore: (savedConnectionsCustomId) => {
             const action = {
                 type: constants.SAVE_SAVED_CONNECTIONS,
