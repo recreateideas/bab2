@@ -10,8 +10,11 @@ const share = (share = initialState.share, action) => {
         case constants.SET_USER_TO:
             return Object.assign({}, share, { ...share, receiver: action.receiver });
         case constants.PUSH_MESSAGE:
+        console.log(action.message);
+        console.log(action.direction);
+        const secondUser = action.direction === 'sent' ? 'receiverId' : 'senderId';
             if(action.message.length && action.message.length > 0){
-                messageHistory = share.chats && share.chats[action.message[0].senderId] ? share.chats[action.message[0].senderId].messages : [];
+                messageHistory = share.chats && share.chats[action.message[0][secondUser]] ? share.chats[action.message[0][secondUser]].messages : [];
                 action.message.forEach(singleMess => {
                     // console.log( singleMess);
                     const newMessage = {
@@ -23,7 +26,7 @@ const share = (share = initialState.share, action) => {
                     messageHistory.push(newMessage);
                 });
             } else {
-                messageHistory = share.chats && share.chats[action.message.senderId] ? share.chats[action.message.senderId].messages : [];
+                messageHistory = share.chats && share.chats[action.message[secondUser]] ? share.chats[action.message[secondUser]].messages : [];
                 const newMessage = {
                     direction: action.direction,
                     content: action.message.content,

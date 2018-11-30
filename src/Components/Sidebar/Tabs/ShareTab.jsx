@@ -10,7 +10,7 @@ class ShareTab extends React.Component {
     renderMessageBoxes(chat, receiver,index) {
         if(receiver !== '' && receiver !== undefined){
             let isActiveBox = this.props.storeReceiver.customId === receiver ? 'show' : 'hidden';
-            console.log(receiver);
+            // console.log(receiver);
             return (
                 <MessageBox
                     key={index}
@@ -23,7 +23,7 @@ class ShareTab extends React.Component {
     }
 
     render() {
-        console.log(this.props.storeChats);
+        // console.log(this.props.storeChats);
         return (
             <div id="shareTab" className="tab glass">
                 <div id='chatContainer'>
