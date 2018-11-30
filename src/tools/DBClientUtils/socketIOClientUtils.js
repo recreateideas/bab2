@@ -30,7 +30,7 @@ const connectToSocket = (component, customId, nickname) => {
 
     socket.on('incomingMessage', message => {
         console.log('MESSAGE', message);
-        console.log(component);
+        // console.log(component);
         component.props.pushMessageToHistory('received', message);
         // console.log(component);
     });
@@ -62,8 +62,8 @@ const connectToSocket = (component, customId, nickname) => {
 const performConnectionToSocket = async (socket, component, customId, nickname) => {
     try{
         console.log('performing connection to socket...');
-        console.log(customId);
-        console.log(nickname);
+        // console.log(customId);
+        // console.log(nickname);
         await findAllUsers(component);
         await getMessageHistory(component);
         await socket.emit('updateClientInfo', { customId, nickname });        /* TEST --> socket.emit('updateClientInfo', { customId:'123456789', nickname: 'second_test_user2' }); */
