@@ -11,7 +11,7 @@ const share = (share = initialState.share, action) => {
             return Object.assign({}, share, { ...share, receiver: action.receiver });
         case constants.PUSH_MESSAGE:
             if(action.message.length && action.message.length > 0){
-                messageHistory = share.chats && share.chats[action.message[0].receiverId] ? share.chats[action.message[0].receiverId].messages : [];
+                messageHistory = share.chats && share.chats[action.message[0].senderId] ? share.chats[action.message[0].senderId].messages : [];
                 action.message.forEach(singleMess => {
                     // console.log( singleMess);
                     const newMessage = {
@@ -23,7 +23,7 @@ const share = (share = initialState.share, action) => {
                     messageHistory.push(newMessage);
                 });
             } else {
-                messageHistory = share.chats && share.chats[action.message.receiverId] ? share.chats[action.message.receiverId].messages : [];
+                messageHistory = share.chats && share.chats[action.message.senderId] ? share.chats[action.message.senderId].messages : [];
                 const newMessage = {
                     direction: action.direction,
                     content: action.message.content,
@@ -33,7 +33,7 @@ const share = (share = initialState.share, action) => {
                 messageHistory.push(newMessage);
             }
             // console.log(messageHistory);
-            const newState = Object.assign({}, share, { ...share, chats: { ...share.chats, [action.message.receiverId]: {...share.chats[action.message.receiverId], messages: messageHistory}} });
+            const newState = Object.assign({}, share, { ...share, chats: { ...share.chats, [action.message.senderId]: {...share.chats[action.message.senderId], messages: messageHistory}} });
             localStorage.setItem('chats',JSON.stringify(newState.chats));
             return  Object.assign({}, share, newState);
         case constants.LOAD_LOCALSTORAGE_MESSASGES:

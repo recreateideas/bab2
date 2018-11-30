@@ -75,6 +75,7 @@ class MessageBox extends React.Component {
 
     render() {
         // console.log(this.props.storeReceiver);
+        // console.log(this.props.messages);
         const activeUser = this.isUserActive(this.props.storeReceiver.customId) ? 'activeUser' : 'inactiveUser';
         const status = this.isUserActive(this.props.storeReceiver.customId) ? '(online)' : '(offline)';
         return (

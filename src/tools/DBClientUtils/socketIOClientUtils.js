@@ -30,7 +30,7 @@ const connectToSocket = (component, customId, nickname) => {
 
     socket.on('incomingMessage', message => {
         console.log('MESSAGE', message);
-        // console.log(component);
+        console.log(component);
         component.props.pushMessageToHistory('received', message);
         // console.log(component);
     });

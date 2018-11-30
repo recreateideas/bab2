@@ -8,9 +8,9 @@ import { mapStateToProps } from '../../../store/mapToProps/mapToProps_ShareTab';
 class ShareTab extends React.Component {
 
     renderMessageBoxes(chat, receiver,index) {
-        // if(receiver !== '' && receiver !== undefined){
+        if(receiver !== '' && receiver !== undefined){
             let isActiveBox = this.props.storeReceiver.customId === receiver ? 'show' : 'hidden';
-            // console.log(receiver);
+            console.log(receiver);
             return (
                 <MessageBox
                     key={index}
@@ -19,15 +19,16 @@ class ShareTab extends React.Component {
                     receiver={receiver}
                 />
             )
-        // }
+        }
     }
 
     render() {
+        console.log(this.props.storeChats);
         return (
             <div id="shareTab" className="tab glass">
                 <div id='chatContainer'>
                     <div id='messagesAndUsers'>
-                        {Object.keys(this.props.storeChats).map((chat, index) => this.renderMessageBoxes(this.props.storeChats[chat], chat,index))}
+                        {Object.keys(this.props.storeChats).filter(chat => chat !== '').map((chat, index) => this.renderMessageBoxes(this.props.storeChats[chat], chat,index))}
                         <TypeBox />
                     </div>
                     <UsersBox/>
