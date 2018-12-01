@@ -155,7 +155,7 @@ class QueryTab extends React.Component {
                     {Object.keys(stages).map(key => this.renderStages(key))} { /*store queries*/} { /*display results*/}
                     <Cursor id='cursorBox' />
                     <p id='queryBottomSpacer' />
-                    <Loader loaderType='ThreeDots'/>
+                    <Loader loaderId='queryLoader' loaderType='ThreeDots' addClass='fullPage'/>
                     <Grid id='bottomWrapper'>
                         <Row>
                             <Col>

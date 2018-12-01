@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { TextInput, FileLoader, ConnectionNamePopup } from '../../Components';
+import { TextInput, FileLoader, ConnectionNamePopup, Loader } from '../../Components';
 import { mapStateToProps, mapDispatchToProps } from '../../store/mapToProps/mapToProps_Connector';
 import { connect } from 'react-redux';
 import { Grid, Row, Col } from 'react-bootstrap';
@@ -20,6 +20,7 @@ class Connector extends React.Component {
         this.state = {
             sf: [],
             displayPopup: false,
+            displayLoader: false,
             titleValidation: true,
             connectionEditedName: '',
         };
@@ -48,14 +49,16 @@ class Connector extends React.Component {
         this.props.setConnectionParametersToStore(e.target.id, value);
     }
 
-    toggleDBSwitch(e) {
+    async toggleDBSwitch(e) {
         const isUserLoggedIn = this.props.storeUserLoggedIn;
         const connect = e.target.checked;
         //add user login check
         switch (connect) {
             case true:
                 if (isUserLoggedIn/* && check permissions*/) {
-                    dbConnect(e, this);
+                    this.setState({displayLoader: true});
+                    await dbConnect(e, this);
+                    this.setState({displayLoader: false});
                     updateUserField({
                         user: this.userDetails(),
                         data: {
@@ -241,6 +244,8 @@ class Connector extends React.Component {
         const enableButtonEvents = this.props.storeConnection.isDBConnected === false || this.props.storeConnection.isDBConnected === undefined ? '' : 'removeEvents';
         const connectionLabel = this.props.storeConnection.label && this.props.storeUser.loggedIn ? this.props.storeConnection.label : '';
         const titleValidationClass = this.state.titleValidation ? '' : 'not_validField';
+        const displayLoader = this.state.displayLoader ? 'show' : 'hidden';
+        console.log('displayLoader ',displayLoader);
         return (
             <div id='connectorContainer' className='featureContainer'>
                 <div className='connectorTitle'>
@@ -420,6 +425,7 @@ class Connector extends React.Component {
 
                     </Grid>
                     <Grid bsClass='connectToggleContainer'>
+                    <Loader loaderId='connectorLoader' loaderType='ThreeDots' addClass='fillContainer' addLoaderClass='connectorLoader' display={displayLoader}/>
                         <Row className='connectorRow toogleRow'>
                             <Col xs={6} sm={6} className='tdAlignRight'>
                                 <p className='h7 toggleLabel'>CONNECT </p>

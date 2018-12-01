@@ -21,9 +21,10 @@ class Loader extends React.Component {
 
     render() {
         const display = this.state.display || this.props.display;
+        const addClass = this.props.addClass;
         return (
-            <div className={`loaderBackdrop fullPage  ${display}`}>
-                <div id='queryLoader' className={`loader ${this.props.loaderType}`}>Searching...</div>
+            <div className={`loaderBackdrop ${addClass} ${display}`}>
+                <div id={this.props.loaderId} className={`loader ${this.props.loaderType} ${this.props.addLoaderClass}`}>Searching...</div>
             </div>
         )
     }
