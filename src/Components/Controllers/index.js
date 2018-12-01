@@ -13,3 +13,4 @@ export { default as UsersBox } from './UsersBox';
 export { default as TypeBox } from './TypeBox';
 export { default as ConnectionShortcutWrap } from './ConnectionShortcutWrap';
 export { default as ConnectionNamePopup } from './ConnectionNamePopup';
+export { default as ConnectionShortcut } from './ConnectionShortcut';

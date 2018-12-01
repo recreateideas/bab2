@@ -8,6 +8,8 @@ const initialState = {
         remoteHostName: '',
         remoteMongoPort: '27017',
         remoteMongoInstance: 'mongodb',
+        remoteMongoUser: '',
+        remoteUserPassword: '',
         db: '',
         sshConnection: false,
         sshPath: '',

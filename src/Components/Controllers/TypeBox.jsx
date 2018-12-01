@@ -58,10 +58,8 @@ class TypeBox extends React.Component {
         const content = this.state.message.content;
         const attachment = this.state.message.attachment;
         const receiverCustomId = this.state.message.receiver.customId;
-        console.log('receiver ',this.state.message.receiver);
         if ( receiverCustomId !== '' && ( content !== '' || (attachment && attachment[0]))) {
-            console.log('send');
-            
+            console.log('sending to ',this.state.message.receiver);
             emitMessage({customId: this.props.storeUser.customId, nickname: this.props.storeUser.nickname},this.state.message);
         }
         this.setState({ message: { ...this.state.message, content: '', date: '', attachment:[] } });

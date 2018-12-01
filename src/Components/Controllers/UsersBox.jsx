@@ -26,7 +26,7 @@ class UsersBox extends React.Component {
             customId: e.currentTarget.dataset.customid,
             nickname: e.currentTarget.dataset.nickname,
         }
-        console.log('RECEIVER --> ', receiver);
+        console.log('RECEIVER --> ', receiver.nickname);
         this.props.setReceiverToStore(receiver);
         this.setState({ isReceiver: 'selectedUser' });
         // add CSS
@@ -63,7 +63,7 @@ class UsersBox extends React.Component {
         // console.log(this.props.storeActiveUsers);
         const users = this.props.storeAllUsers;
         const storeUser = this.props.storeUser;
-        console.log(storeUser);
+        // console.log(storeUser);
         return (
             <div id="usersBox" className="usersBox">
                 <ul>

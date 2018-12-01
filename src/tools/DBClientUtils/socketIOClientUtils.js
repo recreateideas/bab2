@@ -18,6 +18,7 @@ const connectToSocket = (component, customId, nickname) => {
     });
 
     socket.on('receiveActiveUsers', (users) => {
+        console.log('receiveActiveUsers', users);
         component.props.saveUsersToStore('activeUsers', users);
     });
 

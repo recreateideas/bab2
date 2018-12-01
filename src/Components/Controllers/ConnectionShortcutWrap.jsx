@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ConnectionShortcut } from '../BasicComponents';
+import { ConnectionShortcut } from '../Controllers';
 import { mapStateToProps, mapDispatchToProps } from '../../store/mapToProps/mapToProps_ConnectionShortcutWrap';
 import { connect } from 'react-redux';
 
