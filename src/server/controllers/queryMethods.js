@@ -45,7 +45,7 @@ exports.handleQueryExecution = async (req,res) => {
             resultObj.toArray((err, result) => {
                 if(err){
                     console.log(err);
-                    const Error = `${err.name} : ${err.errmsg}`;
+                    const Error = `${err.name}: ${err.errmsg}. CODE: ${err.code}`;
                     res.json({Error});
                 } else {
                     res.json({
