@@ -41,7 +41,7 @@ exports.handleQueryExecution = async (req,res) => {
             parsedQuery = parser(finalQuery);
             // console.log(parsedQuery);
             // db.currentOp(true);
-            resultObj = await db.collection(req.body.collection)[req.body.queryType](parsedQuery).maxTimeMS(1000);
+            resultObj = await db.collection(req.body.collection)[req.body.queryType](parsedQuery).maxTimeMS(10000);
             resultObj.toArray((err, result) => {
                 if(err){
                     console.log(err);
