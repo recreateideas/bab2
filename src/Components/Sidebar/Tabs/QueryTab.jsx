@@ -137,6 +137,7 @@ class QueryTab extends React.Component {
                 <div id='queryConnectionName'>
                     <div className='XLTitle'>{this.props.storeConnectionName}</div>
                 </div>
+                <Loader loaderId='queryLoader' loaderType='ThreeDots' addClass='fullPage'/>
                 <div id='queryComponent'>
                     <Grid id='querySetupTable' className='keystable contentTable appContent'>
                         <Row>
@@ -155,7 +156,6 @@ class QueryTab extends React.Component {
                     {Object.keys(stages).map(key => this.renderStages(key))} { /*store queries*/} { /*display results*/}
                     <Cursor id='cursorBox' />
                     <p id='queryBottomSpacer' />
-                    <Loader loaderId='queryLoader' loaderType='ThreeDots' addClass='fullPage'/>
                     <Grid id='bottomWrapper'>
                         <Row>
                             <Col>
