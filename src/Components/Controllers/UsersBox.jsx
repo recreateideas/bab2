@@ -8,40 +8,40 @@ class UsersBox extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state={
+        this.state = {
             isReceiver: '',
             customId: '',
         };
     }
 
-    componentWillReceiveProps(nextProps){
-        if(nextProps.isReceiver){
-            this.setState({isReceiver: nextProps.isReceiver});
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.isReceiver) {
+            this.setState({ isReceiver: nextProps.isReceiver });
         }
     }
 
-    userOnClick(e){
+    userOnClick(e) {
         e.stopPropagation();
         const receiver = {
             customId: e.currentTarget.dataset.customid,
             nickname: e.currentTarget.dataset.nickname,
         }
-        console.log('RECEIVER --> ',receiver);
+        console.log('RECEIVER --> ', receiver);
         this.props.setReceiverToStore(receiver);
-        this.setState({isReceiver: 'selectedUser'});
+        this.setState({ isReceiver: 'selectedUser' });
         // add CSS
     }
 
-    isUserActive(id){
+    isUserActive(id) {
         const activeUsers = this.props.storeActiveUsers;
         let found = null;
-        activeUsers.filter(user => user.customId === id).forEach(user => {found = true});
+        activeUsers.filter(user => user.customId === id).forEach(user => { found = true });
         return found;
     }
 
-    renderUser(user,index){
+    renderUser(user, index) {
         let rowClass = index === 0 ? 'firstUser' : '';
-        rowClass = (index % 2) === 1 ? (rowClass+' oddUser') : (rowClass+' evenUser');
+        rowClass = (index % 2) === 1 ? (rowClass + ' oddUser') : (rowClass + ' evenUser');
         const activeUser = this.isUserActive(user.customId) ? 'activeUser' : 'inactiveUser';
         const isSelected = user.customId === this.props.storeReceiver.customId ? 'selectedUser' : '';
         return (
@@ -62,11 +62,17 @@ class UsersBox extends React.Component {
     render() {
         // console.log(this.props.storeActiveUsers);
         const users = this.props.storeAllUsers;
+        const storeUser = this.props.storeUser;
+        console.log(storeUser);
         return (
             <div id="usersBox" className="usersBox">
-            <ul>
-                {users.map(((user,index) => this.renderUser(user,index)))}
-            </ul>
+                <ul>
+                    {users.filter(user => {
+                        // console.log(user.customId, storeUser.customId);
+                        return user.customId !== storeUser.customId;
+                        
+                        }).map(((user, index) => this.renderUser(user, index)))}
+                </ul>
             </div>
         )
     }
