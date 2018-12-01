@@ -25,6 +25,7 @@ class Loader extends React.Component {
         return (
             <div className={`loaderBackdrop ${addClass} ${display}`}>
                 <div id={this.props.loaderId} className={`loader ${this.props.loaderType} ${this.props.addLoaderClass}`}>Searching...</div>
+                {/* <div className='h7' onClick={this.interruptRequest.bind(this)}>Cancel</div> */}
             </div>
         )
     }

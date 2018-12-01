@@ -76,17 +76,19 @@ const fetchResults = async component => {
                 query: queryParams
             })
             console.log(res.data)
-            if (res.data.Error)
+            if (res.data.Error){
                 component.props.setQueryMessageToStore('queryError', res.data.Error);
-            component.props.setQueryMessageToStore('queryMessage', '');
-            if (res.data.results) {
-                component.props.setResultsToStore(res.data.results);
-                component.props.setQueryMessageToStore('queryError', '');
-                component.props.setQueryMessageToStore('queryMessage', `The query has returned ${res.data.results.length} results.`);
-            }
-            else {
-                component.props.setQueryMessageToStore('queryError', 'Something went wrong');
                 component.props.setQueryMessageToStore('queryMessage', '');
+            } else {
+                if (res.data.results) {
+                    component.props.setResultsToStore(res.data.results);
+                    component.props.setQueryMessageToStore('queryError', '');
+                    component.props.setQueryMessageToStore('queryMessage', `The query has returned ${res.data.results.length} results.`);
+                }
+                else {
+                    component.props.setQueryMessageToStore('queryError', 'Something went wrong');
+                    component.props.setQueryMessageToStore('queryMessage', '');
+                }
             }
             return res.data;
         } else {

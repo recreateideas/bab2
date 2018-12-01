@@ -11,7 +11,7 @@ exports.findAll = (req, res) => {
     res.json({findAll:true})
 };
 
-exports.handleQueryExecution = (req,res) => {
+exports.handleQueryExecution = async (req,res) => {
     try{
         console.log(`executing query...`);
         const db = mongoUtil.getDB();
@@ -39,13 +39,20 @@ exports.handleQueryExecution = (req,res) => {
             }
             console.log(finalQuery);
             parsedQuery = parser(finalQuery);
-            console.log(parsedQuery);
-            resultObj = db.collection(req.body.collection)[req.body.queryType](parsedQuery)
+            // console.log(parsedQuery);
+            // db.currentOp(true);
+            resultObj = await db.collection(req.body.collection)[req.body.queryType](parsedQuery).maxTimeMS(1000);
             resultObj.toArray((err, result) => {
-                res.json({
-                    parserQuery: parsedQuery,
-                    results: result
-                })
+                if(err){
+                    console.log(err);
+                    const Error = `${err.name} : ${err.errmsg}`;
+                    res.json({Error});
+                } else {
+                    res.json({
+                        parserQuery: parsedQuery,
+                        results: result
+                    })
+                }
             });
         }
     }

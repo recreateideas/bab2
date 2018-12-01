@@ -19,6 +19,8 @@ const mapDispatchToProps = (dispatch) => {
                 remoteMongoInstance: 'mongodb',
                 db: '',
                 label: '',
+                remoteMongoUser:'',
+                remoteUserPassword:'',
                 sshConnection: false,
                 sshPath: '',
                 sshMode: 'file'

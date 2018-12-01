@@ -245,7 +245,7 @@ class Connector extends React.Component {
         const connectionLabel = this.props.storeConnection.label && this.props.storeUser.loggedIn ? this.props.storeConnection.label : '';
         const titleValidationClass = this.state.titleValidation ? '' : 'not_validField';
         const displayLoader = this.state.displayLoader ? 'show' : 'hidden';
-        console.log('displayLoader ',displayLoader);
+        // console.log('displayLoader ',displayLoader);
         return (
             <div id='connectorContainer' className='featureContainer'>
                 <div className='connectorTitle'>

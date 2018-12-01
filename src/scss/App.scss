@@ -55,11 +55,12 @@
     position: absolute;
     top: 0px;
     left: 0px;
+    border-radius: 10px;
     &.show{
         z-index: 100;
     }
     .connectorLoader{
-        top: -5px;
+        top: -10px;
         position: relative;
         display: inline-block;
         margin-left: 50%;

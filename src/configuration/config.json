@@ -131,6 +131,7 @@
             "$match",
             "$sort",
             "$group",
+            "$currentOp",
             "$hint",
             "$sum",
             "-none-"

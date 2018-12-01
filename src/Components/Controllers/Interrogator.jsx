@@ -15,8 +15,8 @@ class Interrogator extends React.Component {
     async runQuery(){
         this.props.setResultsToStore([]); 
         this.props.setDisplayLoaderToStore('queryLoader','show'); 
-        const responseData = await fetchResults(this);
-        console.log(responseData);
+        await fetchResults(this);
+        // console.log(responseData);
         this.props.setDisplayLoaderToStore('queryLoader','hidden');  
     }
 
