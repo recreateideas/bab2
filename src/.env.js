@@ -4,7 +4,7 @@ module.exports = {
     API_URL : '/',
 
     LOCAL_HOST : 'http://localhost',
-    LOCAL_PORT : 5001,
+    LOCAL_PORT : 5011,
 
     REMOTE_SOCKET_HOST : 'http://209.97.162.121',
     REMOTE_SOCKET_PORT : 8011,

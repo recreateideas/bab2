@@ -63,15 +63,12 @@ class UsersBox extends React.Component {
         // console.log(this.props.storeActiveUsers);
         const users = this.props.storeAllUsers;
         const storeUser = this.props.storeUser;
+        const isUserLoggedIn = this.props.storeUser.loggedIn;
         // console.log(storeUser);
         return (
             <div id="usersBox" className="usersBox">
                 <ul>
-                    {users.filter(user => {
-                        // console.log(user.customId, storeUser.customId);
-                        return user.customId !== storeUser.customId;
-                        
-                        }).map(((user, index) => this.renderUser(user, index)))}
+                    {isUserLoggedIn ? users.filter(user => user.customId !== storeUser.customId).map(((user, index) => this.renderUser(user, index))) : ''}
                 </ul>
             </div>
         )
