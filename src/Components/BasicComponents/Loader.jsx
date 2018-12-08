@@ -3,35 +3,17 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux'
 import { mapStateToProps, mapDispatchToProps } from '../../store/mapToProps/mapToProps_Loaders';
 
-
-class Loader extends React.Component {
-    constructor(){
-        super();
-        this.state = {
-            display: 'hidden'
-        };
-    }
-
-    componentWillReceiveProps(nextProps){
-        console.log(nextProps);
-        this.setState({
-            display: nextProps.queryLoader
-        });
-    }
-
-    render() {
-        const display = this.state.display || this.props.display;
-        const addClass = this.props.addClass;
+const Loader = ({ addClass,loaderId,loaderType,addLoaderClass,display = 'hidden' }) => {
         return (
             <div className={`loaderBackdrop ${addClass} ${display}`}>
-                <div id={this.props.loaderId} className={`loader ${this.props.loaderType} ${this.props.addLoaderClass}`}>Searching...</div>
-                {/* <div className='h7' onClick={this.interruptRequest.bind(this)}>Cancel</div> */}
+                <div id={loaderId} className={`loader ${loaderType} ${addLoaderClass}`}>bear with me...</div>
             </div>
         )
-    }
 };
 
 Loader.propTypes = {
+    addClass: PropTypes.string,
+    loaderId: PropTypes.string,
     loaderType: PropTypes.string,
     displayLoader: PropTypes.string,
 };

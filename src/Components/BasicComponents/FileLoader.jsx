@@ -4,21 +4,22 @@ import PropTypes from 'prop-types';
 const FontAwesome = require('react-fontawesome');
 
 
-const FileLoader = (props) => {
+const FileLoader = ({inputID,addClass,iconClass,buttonIcon,iconSize,change,fileAccepted}) => {
+
     return (
         <div className='inline buttonContainer'>
-            <label htmlFor={props.inputID}>
-                <div className={`${props.addClass}`}>
-                    <FontAwesome className={props.iconClass} name={props.buttonIcon} size={props.iconSize} style={{ textShadow: '0 1px 0 rgba(255, 255, 255, 0.7)' }} />
+            <label htmlFor={inputID}>
+                <div className={`${addClass}`}>
+                    <FontAwesome className={iconClass} name={buttonIcon} size={iconSize} style={{ textShadow: '0 1px 0 rgba(255, 255, 255, 0.7)' }} />
                 </div>
             </label>
             <input
                 type="file"
-                id={props.inputID}
-                name={`${props.inputID}`}
-                onChange={props.change}
+                id={inputID}
+                name={`${inputID}`}
+                onChange={change}
                 className='display_none'
-                accept={props.fileAccepted}
+                accept={fileAccepted}
                 encType="multipart/form-data"
             />
         </div>
@@ -27,6 +28,7 @@ const FileLoader = (props) => {
 
 FileLoader.propTypes = {
     inputID: PropTypes.string,
+    addClass: PropTypes.string,
     iconClass: PropTypes.string,
     buttonIcon: PropTypes.string,
     change: PropTypes.func,

@@ -1,16 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Button2 = (props)=>{
-    const disabled = props.disabled ? props.disabled : false;
-        return (
-            <button
-            className={`button2 ${props.addClass}`}
-            onClick={props.click}
-            id={props.buttonId}
+const Button2 = ({ addClass, click, buttonId, value, disabled = false }) => {
+
+    return (
+        <button
+            className={`button2 ${addClass}`}
+            onClick={click}
+            id={buttonId}
             disabled={disabled}
-            ><h4>{props.value}</h4></button>
-        )
+        >
+            <h4>
+                {value}
+            </h4>
+        </button>
+    )
 }
 
 Button2.propTypes = {
@@ -20,7 +24,7 @@ Button2.propTypes = {
     value: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.object
-      ]),
+    ]),
 };
 
 export default Button2;

@@ -1,16 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Button = (props)=>{
-    const disabled = props.disabled ? props.disabled : false;
-        return (
-            <button
+const Button = ({ click, buttonId, value, disabled = false }) => {
+
+    return (
+        <button
             className='submitButton'
-            onClick={props.click}
-            id={props.buttonId}
+            onClick={click}
+            id={buttonId}
             disabled={disabled}
-            ><h5>{props.value}</h5></button>
-        )
+        >
+            <h5>
+                {value}
+            </h5>
+        </button>
+    )
 }
 
 Button.propTypes = {
@@ -20,7 +24,7 @@ Button.propTypes = {
     value: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.object
-      ]),
+    ]),
 };
 
 export default Button;

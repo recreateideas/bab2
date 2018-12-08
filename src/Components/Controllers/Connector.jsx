@@ -314,38 +314,6 @@ class Connector extends React.Component {
                                 <p className='h7'>Remote Mongo Port <span>(default: 27017)</span></p>
                             </Col>
                         </Row>
-                        {/* <Row className='connectorRow'>
-                            <Col xs={12} sm={5}> <TextInput
-                                    inputId={'proxyServer'}
-                                    change={this.recordConnectionParams.bind(this)}
-                                    value={this.props.storeConnection.proxyServer || ''}
-                                    label={'proxy server IP...'}
-                                    activeClass={enableInput}
-                                    disabled={this.props.storeConnection.isDBConnected}
-                                />
-                            </Col>
-                            <Col xs={12} sm={7}>
-                                <p className='h7'>Proxy IP</p>
-                            </Col>
-                        </Row>
-                        <Row className='connectorRow'>
-                            <Col xs={12} sm={5}>
-                                <TextInput
-                                    inputId={'proxyPort'}
-                                    change={this.recordConnectionParams.bind(this)}
-                                    value={this.props.storeConnection.proxyPort || ''}
-                                    label={'Port..'}
-                                    activeClass={enableInput}
-                                    disabled={this.props.storeConnection.isDBConnected}
-                                    inputWidth={70}
-                                />
-                            </Col>
-                            <Col xs={12} sm={7}>
-                                <p className='h7'>Proxy Port</p>
-                            </Col>
-                        </Row> */}
-                        {/* <Row className='connectorRow'><Col xs={12} sm={5}><p className='h7'>MongoDB HostName</p></Col><Col xs={12} sm={7}></Col></Row>
-                        <Row className='connectorRow'><Col xs={12} sm={5}><p className='h7'>MongoDB Server port</p></Col><Col xs={12} sm={7}></Col></Row> */}
                         <Row className='connectorRow'>
                             <Col xs={12} sm={5} id='sshCol' className={enableButtonEvents}>
                                 <FileLoader

@@ -6,11 +6,12 @@ const FontAwesome = require('react-fontawesome');
 class DateTimePickerButton extends React.Component {
 
     render() {
+        const { onClick } = this.props;
         return (
             <button
                 className="pickerButton"
-                onClick={this.props.onClick}>
-                <FontAwesome  name='calendar-alt' /*spin*/ style={{ fontSize:'18px',top: '-5px',position:'relative',left:'0.5px'}} />
+                onClick={onClick}>
+                <FontAwesome name='calendar-alt' style={{ fontSize: '18px', top: '-5px', position: 'relative', left: '0.5px' }} />
             </button>
         )
     }

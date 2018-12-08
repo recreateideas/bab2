@@ -1,24 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const IsActive = (props) => {
-    let checked;
-    // const defaultChecked = (typeof props.defaultChecked  ==='boolean' ? props.defaultChecked : true);
-    if (typeof props.checked === 'boolean'){
-        checked = props.checked;
-    }
+const IsActive = ({checked,className,spanClass,inputId,change}) => {
+
     return (
-        <label className={props.className}>
+        <label className={className}>
             <input
-                id={props.inputId}
+                id={inputId}
                 type="checkbox"
-                name={props.inputId}
-                value={props.inputId}
-                onChange={props.change}
-                checked={checked}
-                // defaultChecked={props.defaultChecked}
+                name={inputId}
+                value={inputId}
+                onChange={change}
+                checked={typeof checked === 'boolean' ? checked : true}
             />
-            <span className={`${props.spanClass || ''} checkmark`}></span>
+            <span className={`${spanClass || ''} checkmark`}></span>
         </label>
     )
 }
