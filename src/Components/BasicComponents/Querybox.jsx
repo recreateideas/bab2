@@ -3,10 +3,10 @@ import { connect } from 'react-redux';
 import { mapStateToProps } from '../../store/mapToProps/mapToProps_Querybox';
 import PropTypes from 'prop-types';
 
-const Querybox = (props) => {
+const Querybox = ({mongo_query}) => {
    return ( 
     <div className='querybox'>
-       <h5> {props.mongo_query}
+       <h5> {mongo_query}
         </h5>
     </div>
    )

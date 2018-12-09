@@ -1,19 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const SelectInput = props => {
-
-    let value = props.value ? props.value : props.valueRange[0];
+const SelectInput = ({valueRange,value = valueRange[0],inputId,className,change,disabled}) => {
 
     return (
             <select
-                id={props.inputId}
-                className={`form-control inputSelect ${props.className}`}
-                onChange={props.change}
+                id={inputId}
+                className={`form-control inputSelect ${className}`}
+                onChange={change}
                 value={value}
-                disabled={props.disabled}
+                disabled={disabled}
             >
-                {props.valueRange.map((key, index) => <option key={key} value={key}>{key}</option> )}
+                {valueRange.map((key, index) => <option key={index} value={key}>{key}</option> )}
             </select>
 
     )
