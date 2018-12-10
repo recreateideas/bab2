@@ -1,16 +1,16 @@
 import constants from '../constants';
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
     const isPretty = state.query.cursors.hasOwnProperty('pretty')
     return {
-        storeQuery: state.query,
+        storeActiveCursors: state.query.cursors,
         storeConfig: state.config,
         storeisPretty: isPretty,
         storeResults: state.mongo.mongo_results,
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
     return {
         insertCursorInQueryToStore: (cursors) => {
             const action = {

@@ -4,65 +4,75 @@ import { mapStateToProps, mapDispatchToProps } from '../../store/mapToProps/mapT
 import RightSlideOut from './RightSlideOut';
 import JSONPretty from 'react-json-pretty';
 import PropTypes from 'prop-types';
+import { isNotEmptyArray, formatUglyJSON } from '../../tools/helpers';
 
 
 class Background extends React.Component {
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             fontSize: 14,
             displayMinified: 'hidden',
             displayPretty: 'show',
-        }
+            baboonLogo: require('../../images/baboon_white_monkey.png')
+        };
+    }
+
+    displayJSON(isPretty) {
+        if (isPretty === 'pretty')
+            this.setState({
+                displayPretty: 'show',
+                displayMinified: 'hidden'
+            });
+        else if (isPretty === 'ugly')
+            this.setState({
+                displayPretty: 'hidden',
+                displayMinified: 'show'
+            });
     }
 
     componentWillReceiveProps(nextProps) {
-        !nextProps.storeisPretty ? this.setState({ displayPretty: 'hidden', displayMinified: 'show' }) : this.setState({ displayPretty: 'show', displayMinified: 'hidden' })
-
+        const { storeisPretty } = nextProps;
+        storeisPretty ? this.displayJSON('pretty') : this.displayJSON('ugly');
+        this.scrollToBottom();
     }
 
-    increaseFont() {
-        let fontSize = this.state.fontSize;
-        if (fontSize < 40) fontSize++;
-        this.setState({ fontSize });
-    }
-
-    decreaseFont() {
-        let fontSize = this.state.fontSize;
-        if (fontSize > 8) fontSize--;
-        this.setState({ fontSize });
+    changeFontSize(action) {
+        let { fontSize } = this.state;
+        if (fontSize > 8 && fontSize < 40) {
+            switch (action) {
+                case 'increase': fontSize++; break;
+                default: fontSize--; break;
+            }
+            this.setState({ fontSize });
+        }
     }
 
     toggleMinified() {
-        this.state.displayPretty === 'show' ? this.setState({ displayPretty: 'hidden', displayMinified: 'show' }) : this.setState({ displayPretty: 'show', displayMinified: 'hidden' })
+        const { displayPretty } = this.state;
+        displayPretty === 'show' ? this.displayJSON('ugly') : this.displayJSON('pretty');
         this.togglePrettyCursorToStore();
     }
 
     togglePrettyCursorToStore() {
-        let activeCursors = this.props.storeQuery.cursors;
-        const prettyCursor = this.props.storeConfig.cursors.pretty;
-        !this.props.storeisPretty ? activeCursors['pretty'] = prettyCursor : delete activeCursors.pretty;
-        this.props.insertCursorInQueryToStore(activeCursors);
+        let { storeActiveCursors } = this.props;
+        const {
+            insertCursorInQueryToStore,
+            storeisPretty,
+            storeConfig: {
+                cursors: {
+                    pretty
+                }
+            },
+        } = this.props;
+        storeisPretty ? delete storeActiveCursors.pretty : storeActiveCursors.pretty = pretty;
+        insertCursorInQueryToStore(activeCursors);
     }
 
-    formatUglyJSON(json) {
-        if (json && json !== []) {
-            let html = JSON.stringify(json);
-            html = html.replace(/("|{"|,")([^"]+)(":)/gm, `$1<span class='json-key'>$2</span>$3`);
-            html = html.replace(/(:|\[)(")([^"]+)(")/gm, `$1<span class='json-string'>$2$3$4</span>`);
-            html = html.replace(/(\[)(")([^"]+)(")(,|\]|,")/gm, `$1<span class='json-string'>$2$3$4</span>$5`);
-            html = html.replace(/(,)(")([^"]+)(")(,|\])/gm, `$1<span class='json-string'>$2$3$4</span>$5`);
-            html = html.replace(/(,|:\[|:{|:)(\d+)(,|\]|})/gm, `$1<span class='json-value'>$2</span>$3`);//
-            html = html.replace(/(,|:\[|:{|:)(\d+)(])/gm, `$1<span class='json-value'>$2</span>$3`);
-            return html;
-        }
-        else return '';
-    }
-
-    componentDidMount() {
-        this.scrollToBottom();
-    }
+    // componentDidMount() {
+    //     this.scrollToBottom();
+    // }
 
     componentDidUpdate() {
         this.scrollToBottom();
@@ -73,34 +83,34 @@ class Background extends React.Component {
     }
 
     render() {
-        let resultClass;
-        if (this.props.storeResults) {
-            resultClass = Object.keys(this.props.storeResults).length === 0 ? 'hidden' : 'show';
-        }
-        else resultClass = 'hidden';
-        // console.log(window.location.pathname);
+        const { storeResults, } = this.props;
+        const { fontSize, displayPretty, displayMinified, baboonLogo } = this.state;
+        const resultClass = isNotEmptyArray(storeResults) ? 'show' : 'hidden';
+ 
         return (
             <div>
-                <JSONPretty ref={(el) => { this.json = el; }} id='mongo_results' space={2} style={{ fontSize: `${this.state.fontSize}px` }} json={this.props.storeResults} className={`${resultClass} ${this.state.displayPretty}`}></JSONPretty>
-                <div id='minifiedContainer' className={this.state.displayMinified}><p style={{ fontSize: `${this.state.fontSize}px` }} dangerouslySetInnerHTML={{ __html: this.formatUglyJSON(this.props.storeResults) }} /></div>
+                <JSONPretty ref={(el) => { this.json = el; }} id='mongo_results' space={2} style={{ fontSize: `${fontSize}px` }} json={storeResults} className={`${resultClass} ${displayPretty}`}></JSONPretty>
+                <div id='minifiedContainer' className={displayMinified}><p style={{ fontSize: `${fontSize}px` }} dangerouslySetInnerHTML={{ __html: formatUglyJSON(storeResults) }} /></div>
                 < div className='headerTitle'>
-                    <img src={require('../../images/baboon_white_monkey.png')} alt='logo' className='baboonLogo' />
-                    {/* <img src={require('../../images/slideright_label.png')} alt='logo' className='baboonLogo' />v */}
+                    <img src={baboonLogo} alt='logo' className='baboonLogo' />
                 </div>
                 <RightSlideOut
-                    increaseFont={this.increaseFont.bind(this)}
-                    decreaseFont={this.decreaseFont.bind(this)}
-                    fontSize={this.state.fontSize}
-                    toggleMinified={this.toggleMinified.bind(this)}
+                    increaseFont={() => this.changeFontSize('increase')}
+                    decreaseFont={() => this.changeFontSize('decrease')}
+                    fontSize={fontSize}
+                    toggleMinified={this.toggleMinified}
                 />
-                <div style={{ float: "left", clear: "both" }} ref={(el) => { this.jsonEnd = el; }}></div>
+                <div className='jsonEnd' ref={(el) => { this.jsonEnd = el; }}></div>
             </div>
         )
     }
 }
 
 Background.propTypes = {
-    storeResults: PropTypes.array
+    storeResults: PropTypes.array,
+    storeisPretty: PropTypes.bool,
+    insertCursorInQueryToStore: PropTypes.func,
+    storeConfig: PropTypes.object,
 };
 
 

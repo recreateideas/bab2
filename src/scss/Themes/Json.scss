@@ -18,7 +18,7 @@
 }
 
 #mongo_results {
-    position: absolute;
+    position: relative;
     left: 7%;
     background-color: rgba(0, 0, 0, 0) !important;
 }
@@ -45,4 +45,13 @@
 .json-string {
     color: #6fb98f;
     font-weight: inherit;
+}
+
+.jsonEnd {
+    vertical-align: bottom;
+    /* clear: both; */
+    position: relative;
+    bottom: 0px;
+    top: 100%;
+    height: 5px
 }
