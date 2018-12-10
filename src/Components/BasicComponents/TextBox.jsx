@@ -1,15 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const TypeBox = (props) => {
+const TypeBox = ({addClass,content,change,keypress}) => {
     return (
-        <div className={`textbox ${props.addClass}`}>
+        <div className={`textbox ${addClass}`}>
             <textarea
                 id='typeBoxInput'
-                value={props.content}
-                onChange={props.change}
-                onKeyPress={props.keypress}
-            >{props.content}</textarea>
+                value={content}
+                onChange={change}
+                onKeyPress={keypress}
+            >{content}</textarea>
         </div>
     )
 };

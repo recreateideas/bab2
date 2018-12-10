@@ -1,23 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const TextInput = props => {
-    const fieldType = props.fieldType ? props.fieldType : 'text';
-    const display = props.displayField === 'hidden' ? props.displayField : ''; 
+const TextInput = ({fieldType = 'text',displayField,inputRef,inputId,label,change,activeClass,addClass,onHover,onOut,value,disabled,inputWidth,autoComplete = ''}) => {
+
     return (
             <input
-                ref={props.inputRef}
-                id={props.inputId}
+                ref={inputRef}
+                id={inputId}
                 type={fieldType}
-                placeholder={props.label}
-                onChange={props.change}
-                className={`form-control inputText ${props.activeClass} ${display} ${props.addClass}`}
-                onMouseOver={props.onHover}
-                onMouseOut={props.onOut}
-                value={props.value}
-                disabled={props.disabled}
-                style={{ width: props.inputWidth }}
-                autoComplete={props.autoComplete || ''}
+                placeholder={label}
+                onChange={change}
+                className={`form-control inputText ${activeClass} ${displayField} ${addClass}`}
+                onMouseOver={onHover}
+                onMouseOut={onOut}
+                value={value}
+                disabled={disabled}
+                style={{ width: inputWidth }}
+                autoComplete={autoComplete}
             />
     )
 }
@@ -30,6 +29,7 @@ TextInput.propTypes = {
     displayField: PropTypes.string,
     change: PropTypes.func,
     activeClass: PropTypes.string,
+    addClass: PropTypes.string,
     onHover: PropTypes.func,
     onOut: PropTypes.func,
     value: PropTypes.string,

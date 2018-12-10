@@ -1,22 +1,19 @@
-import React from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
-class UserContainer extends React.Component {
+const UserContainer = ({containerId,addClass,click,customId,nickname,activeUser,lastActive}) => {
 
-
-    render() {
         return (
-            <div id={this.props.containerId} className={`${this.props.addClass} userContainer`} onClick={this.props.click} data-customid={this.props.customId} data-nickname={this.props.nickname}>
+            <div id={containerId} className={`${addClass} userContainer`} onClick={click} data-customid={customId} data-nickname={nickname}>
                 <div className='connectedBadge'>
-                    <div className={`connectedCircle ${this.props.activeUser}`}></div>
+                    <div className={`connectedCircle ${activeUser}`}></div>
                 </div>
                 <div className='userTextWrap'>
-                    <p className='nicknameText h7'>{this.props.nickname}</p><br />
-                    <p className='lastActiveText'>{this.props.lastActive}</p><br />
+                    <p className='nicknameText h7'>{nickname}</p><br />
+                    <p className='lastActiveText h7'>{lastActive}</p><br />
                 </div>
             </div>
         )
-    }
 }
 
 UserContainer.propTypes = {
@@ -25,6 +22,7 @@ UserContainer.propTypes = {
     nickname: PropTypes.string,
     lastActive: PropTypes.string,
     click: PropTypes.func,
+    activeUser: PropTypes.string,
     customId: PropTypes.string
 };
 

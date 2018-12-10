@@ -13,7 +13,6 @@ const SelectInput = ({valueRange,value = valueRange[0],inputId,className,change,
             >
                 {valueRange.map((key, index) => <option key={index} value={key}>{key}</option> )}
             </select>
-
     )
 }
 
