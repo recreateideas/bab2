@@ -70,10 +70,6 @@ class Background extends React.Component {
         insertCursorInQueryToStore(activeCursors);
     }
 
-    // componentDidMount() {
-    //     this.scrollToBottom();
-    // }
-
     componentDidUpdate() {
         this.scrollToBottom();
     }
