@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-// import { Button2 } from '../BasicComponents';
+import ReactTooltip from 'react-tooltip';
 import PropTypes from 'prop-types';
 import LoginIFrame from './LoginIFrame';
 import { mapStateToProps } from '../../store/mapToProps/mapToProps_SlideRightOut';
 import { downloadFile, saveResultsToCSV } from '../../tools/fileManagers';
-import ReactTooltip from 'react-tooltip';
+import { isNotEmptyArray, preventEventPropagation } from '../../tools/helpers';
 
 const FontAwesome = require('react-fontawesome');
 const uglify_inactive = require('../../images/uglify.png');
@@ -16,53 +16,35 @@ class RightSlideOut extends Component {
         super(props);
         this.state = {
             displayIFrame: false,
-        }
+        };
+        this.toggleDisplayLoginIFrame = this.toggleDisplayLoginIFrame.bind(this);
+        this.saveQueryToFile = this.saveQueryToFile.bind(this);
     }
 
-    toggleIFrame() {
-        const isIFrameDisplayed = this.state.displayIFrame;
-        this.setState({
-            displayIFrame: !isIFrameDisplayed
-        });
+    toggleDisplayLoginIFrame(e) {
+        preventEventPropagation(e);
+        const { displayIFrame } = this.state;
+        this.setState({ displayIFrame: !displayIFrame });
     }
 
-    closeLogin(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        this.setState({
-            displayIFrame: false
-        });
-    }
-
-    saveQuery() {
-        let fullState = this.props.storeAllState;
-        const fileContent = this.prepareStateForExport(fullState);
+    saveQueryToFile() {
+        const { storeAllState } = this.props;
+        const fileContent = this.trimStateToExport(storeAllState);
         downloadFile({
             content: fileContent,
             extension: 'bab',
             filename: `baboon_query${+new Date()}.bab`
         });
-        // console.log(fileContent);
     }
 
-    prepareStateForExport(object) {
-        let fullState = Object.assign({},object);
-        if (fullState) {
-            // delete fullState.config;
-            delete fullState.greeting;
-            delete fullState.isDBConnected;
-            delete fullState.DBcollections;
-            delete fullState.connectionMessage;
-            delete fullState.db;
-            delete fullState.mongo_results;
-            delete fullState.user;
-            return JSON.stringify(fullState);
-        }
+    trimStateToExport(storeAllState) {
+        const { mongo, graphic, connection, share, user, ...stateToExport } = storeAllState;
+        return JSON.stringify(stateToExport);
     };
 
-    checkResultsLength() {
-        const mongo_results = this.props.storeQueryResults;
-        if (mongo_results && mongo_results.length > 0) {
+    toggleActiveToolButtons() {
+        const { storeQueryResults } = this.props;
+        if (isNotEmptyArray(storeQueryResults)) {
             return {
                 activeFont: '',
                 activeExport: '',
@@ -74,39 +56,31 @@ class RightSlideOut extends Component {
             return {
                 activeFont: 'inactiveButtonIcon',
                 activeExport: 'inactiveButtonIcon',
-                activeQuerySave: 'inactiveButtonIcon',
-                activeShare: 'inactiveButtonIcon',
+                activeQuerySave: '',
+                activeShare: '',
                 activeUglify: 'inactiveButtonIcon',
             }
         }
-        /******** TEST *********/
-        // return {
-        //     activeFont: '',
-        //     activeExport: '',
-        //     activeQuerySave: '',
-        //     activeShare: '',
-        // }
-        /***********************/
-    }
-
-    saveResults() {
-        saveResultsToCSV(this.props.storeQueryResults);
     }
 
     render() {
-        let hideLoggedOut = this.props.storeUser.loggedIn ? 'display_none' : '';
-        let hideLoggedIn = this.props.storeUser.loggedIn ? '' : 'display_none';
-        let loggedInBorder = this.props.storeUser.loggedIn ? 'loggedInBorder' : '';
-        const activeToolsClass = this.checkResultsLength();
-        let uglify,uglifyClass='';
-        if(activeToolsClass.activeUglify === ''){
+
+        const { storeQueryResults, increaseFont, fontSize, decreaseFont, toggleMinified, storeUser: { loggedIn, nickname } } = this.props;
+
+        const hideLoggedOut = loggedIn ? 'display_none' : '';
+        const hideLoggedIn = loggedIn ? '' : 'display_none';
+        const loggedInBorder = loggedIn ? 'loggedInBorder' : '';
+
+        const { activeFont, activeExport, activeQuerySave, activeShare, activeUglify } = this.toggleActiveToolButtons();
+        let uglify, uglifyClass = '';
+        if (activeUglify === '') {
             uglify = uglify_active;
-            uglifyClass='activeImg';
-        } else{
+            uglifyClass = 'activeImg';
+        } else {
             uglify = uglify_inactive;
-            uglifyClass='inactiveImg';
+            uglifyClass = 'inactiveImg';
         };
-        // console.log(this.checkResultsLength());
+        // console.log(this.toggleActiveToolButtons());
         return (
             <div>
                 <div id="rightSlideOut">
@@ -117,60 +91,49 @@ class RightSlideOut extends Component {
                         {/* [Login + Exports] */}
                         <ul id='userPanel'>
                             <li>
-                                <div id='loginButton' className={`borderlessButton ${loggedInBorder}`} onClick={this.toggleIFrame.bind(this)}>
+                                <div id='loginButton' className={`borderlessButton ${loggedInBorder}`} onClick={this.toggleDisplayLoginIFrame}>
                                     <FontAwesome name='users' size='3x' className={`iconButton ${hideLoggedOut}`} />
                                     <FontAwesome name='user-check' size='3x' className={`iconButton loggedInButton ${hideLoggedIn}`} />
                                 </div>
                             </li>
                             <li>
                                 <div id='nicknameWrapper' className={`${hideLoggedIn}`}>
-                                    <p id='nickname'>{this.props.storeUser.nickname}</p>
+                                    <p id='nickname'>{nickname}</p>
                                 </div>
                             </li>
                         </ul>
                         <hr className="slideSeparator" />
                         <div id='fontSizeControls' className='toolContainer'>
                             <div className='slideOutDescriptionContainer'><p className='slideOutDescription'>font size</p></div>
-                            <div id='increaseFont' onClick={activeToolsClass.activeFont === '' ? this.props.increaseFont : null}>
-                                <h4 className={`fontButton ${activeToolsClass.activeFont}`}>+</h4>
+                            <div id='increaseFont' onClick={activeFont === '' ? increaseFont : null}>
+                                <h4 className={`fontButton ${activeFont}`}>+</h4>
                             </div>
-                            <div><p className={`fontSize ${activeToolsClass.activeFont}`}>{this.props.fontSize}</p></div>
-                            <div id='decreaseFont' onClick={activeToolsClass.activeFont === '' ? this.props.decreaseFont : null}>
-                                <h4 className={`fontButton ${activeToolsClass.activeFont}`}>&#8722;</h4>
+                            <div><p className={`fontSize ${activeFont}`}>{fontSize}</p></div>
+                            <div id='decreaseFont' onClick={activeFont === '' ? decreaseFont : null}>
+                                <h4 className={`fontButton ${activeFont}`}>&#8722;</h4>
                             </div>
                         </div>
-            {/* <hr className="slideSeparator" /> */}
                         <div id='formatResults' className='toolContainer'>
                             <div className='slideOutDescriptionContainer'><p className='slideOutDescription'>format</p></div>
                             <div>
-                                {/* <FontAwesome name='file-export' size='2x' className={`iconButton ${activeToolsClass.activeQuerySave}`} onClick={this.saveResults.bind(this)} /> */}
-                                <img src={uglify} className={`imageButton ${uglifyClass}`} alt='uglify' data-tip data-for='tooltip_uglify' onClick={activeToolsClass.activeUglify === '' ? this.props.toggleMinified : null}/>
-                                <ReactTooltip id='tooltip_uglify' type='warning'>
-                                    <span>uglify/pretty results</span>
-                                </ReactTooltip>
+                                <img src={uglify} className={`imageButton ${uglifyClass}`} alt='uglify' data-tip data-for='tooltip_uglify' onClick={activeUglify === '' ? toggleMinified : null} />
+                                <ReactTooltip id='tooltip_uglify' type='warning' children={`uglify/pretty results`} />
                             </div>
                         </div>
-            {/* <hr className="slideSeparator" /> */}
                         <div id='quickTools' className='toolContainer'>
                             <div className='slideOutDescriptionContainer'><p className='slideOutDescription'>tools</p></div>
                             <ul id='quickToolsList'>
                                 <li id='saveResults' data-tip data-for='tooltip_CSV'>
-                                    <FontAwesome name='file-export' size='2x' className={`iconButton ${activeToolsClass.activeQuerySave}`} onClick={activeToolsClass.activeQuerySave === '' ? this.saveResults.bind(this) : null} />
-                                    <ReactTooltip id='tooltip_CSV' type='warning'>
-                                        <span>export results to CSV</span>
-                                    </ReactTooltip>
+                                    <FontAwesome name='file-export' size='2x' className={`iconButton ${activeExport}`} onClick={activeExport === '' ? () => saveResultsToCSV(storeQueryResults): null} />
+                                    <ReactTooltip id='tooltip_CSV' type='warning' children={`export results to CSV`} />
                                 </li>
                                 <li id='saveQuery' data-tip data-for='tooltip_saveQuery'>
-                                    <FontAwesome name='save' size='2x' className={`iconButton ${activeToolsClass.activeExport}`} onClick={activeToolsClass.activeExport === '' ? this.saveQuery.bind(this): null} />
-                                    <ReactTooltip id='tooltip_saveQuery' type='warning'>
-                                        <span>save query to file</span>
-                                    </ReactTooltip>
+                                    <FontAwesome name='save' size='2x' className={`iconButton ${activeQuerySave}`} onClick={activeQuerySave === '' ? this.saveQueryToFile : null} />
+                                    <ReactTooltip id='tooltip_saveQuery' type='warning' children={`save query to file`} />
                                 </li>
                                 <li id='shareWorkspace' data-tip data-for='tooltip_shareWorkspace'>
-                                    <FontAwesome name='share-alt' size='2x' className={`iconButton ${activeToolsClass.activeShare}`} />
-                                    <ReactTooltip id='tooltip_shareWorkspace' type='warning'>
-                                        <span>share workspace</span>
-                                    </ReactTooltip>
+                                    <FontAwesome name='share-alt' size='2x' className={`iconButton ${activeShare}`} />
+                                    <ReactTooltip id='tooltip_shareWorkspace' type='warning' children={`share workspace`} />
                                 </li>
                             </ul>
                         </div>
@@ -178,7 +141,7 @@ class RightSlideOut extends Component {
                 </div>
                 <LoginIFrame
                     display={this.state.displayIFrame}
-                    closeLogin={this.closeLogin.bind(this)}
+                    closeLogin={this.toggleDisplayLoginIFrame}
                 />
             </div>
         );

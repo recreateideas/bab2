@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { mapStateToProps, mapDispatchToProps } from '../../store/mapToProps/mapToProps_Background';
 import RightSlideOut from './RightSlideOut';
@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import { isNotEmptyArray, formatUglyJSON } from '../../tools/helpers';
 
 
-class Background extends React.Component {
+class Background extends Component {
 
     constructor(props) {
         super(props);
@@ -17,15 +17,17 @@ class Background extends React.Component {
             displayPretty: 'show',
             baboonLogo: require('../../images/baboon_white_monkey.png')
         };
+        this.toggleMinified = this.toggleMinified.bind(this);
+        this.changeFontSize = this.changeFontSize.bind(this)
     }
 
-    displayJSON(isPretty) {
-        if (isPretty === 'pretty')
+    displayJSON(isJSONprettyOrUgly) {
+        if (isJSONprettyOrUgly === 'pretty')
             this.setState({
                 displayPretty: 'show',
                 displayMinified: 'hidden'
             });
-        else if (isPretty === 'ugly')
+        else if (isJSONprettyOrUgly === 'ugly')
             this.setState({
                 displayPretty: 'hidden',
                 displayMinified: 'show'
@@ -67,7 +69,7 @@ class Background extends React.Component {
             },
         } = this.props;
         storeisPretty ? delete storeActiveCursors.pretty : storeActiveCursors.pretty = pretty;
-        insertCursorInQueryToStore(activeCursors);
+        insertCursorInQueryToStore(storeActiveCursors);
     }
 
     componentDidUpdate() {
@@ -79,10 +81,9 @@ class Background extends React.Component {
     }
 
     render() {
-        const { storeResults, } = this.props;
+        const { storeResults } = this.props;
         const { fontSize, displayPretty, displayMinified, baboonLogo } = this.state;
         const resultClass = isNotEmptyArray(storeResults) ? 'show' : 'hidden';
- 
         return (
             <div>
                 <JSONPretty ref={(el) => { this.json = el; }} id='mongo_results' space={2} style={{ fontSize: `${fontSize}px` }} json={storeResults} className={`${resultClass} ${displayPretty}`}></JSONPretty>

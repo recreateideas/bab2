@@ -1,6 +1,6 @@
 
 
-const isNotEmptyArray = array => array && Array.isArray(array) && Object.keys(array).length > 0 ;
+const isNotEmptyArray = array => array && Array.isArray(array) && Object.keys(array).length > 0;
 
 const formatUglyJSON = json => {
     if (json && json !== []) {
@@ -16,4 +16,7 @@ const formatUglyJSON = json => {
     else return '';
 }
 
-export { isNotEmptyArray, formatUglyJSON }
+const preventEventPropagation = e => { e.preventDefault(); e.stopPropagation(); }
+
+
+export { isNotEmptyArray, formatUglyJSON, preventEventPropagation }
